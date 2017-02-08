@@ -1,0 +1,20 @@
+{
+  "name": "web_app_from_scratch",
+  "version": "1.0.0",
+  "description": "1. GitHub repository opzetten voor het vak 2. Voor- en nadelen jQuery onderzoeken (libraries/frameworks in het algemeen)",
+  "main": "week1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eltongonc/web_app_from_scratch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eltongonc/web_app_from_scratch/issues"
+  },
+  "homepage": "https://github.com/eltongonc/web_app_from_scratch#readme"
+}
