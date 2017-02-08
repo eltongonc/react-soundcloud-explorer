@@ -2,7 +2,6 @@
     "use strict";
 
     var section = document.querySelectorAll('section');
-    var hash = "#home";
 
     var app = {
         init: function(){
@@ -14,7 +13,11 @@
         init: function(){
             var newURL = location.href,
                 newHash = location.hash;
-
+            if (!newHash) {
+                var defaultHash = "#home";
+                newHash = defaultHash;
+                sections.toggle(newHash);
+            }
             // if the hash has changed and a handler has been bound...
             if ( newHash != oldHash && typeof window.onhashchange === "function" ) {
 
