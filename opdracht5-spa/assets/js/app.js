@@ -124,6 +124,7 @@
         },
     };
 
+
     // handles the sections
     var sections = {
         toggle: function(route){

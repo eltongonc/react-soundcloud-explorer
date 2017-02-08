@@ -1,11 +1,5 @@
 # Web app from scratch
-## Opdrachten
 
-### Create a GitHub repository
-[Webapp from scratch](https://github.com/eltongonc/web_app_from_scratch)
-[Frontpage](https://eltongonc.github.io/)
-
-***
 
 ### Pro's and Con's of jQuery (libraries/frameworks in general)
 
@@ -44,38 +38,8 @@ JS framework are made due to trends. People are free to make a framework work an
 
 ***
 
-### Bestaande code ombouwen naar een object structuur (Minmaal Object Literal Pattern & IIFE)
-    [Opdracht 4 - geo](https://github.com/eltongonc/web_app_from_scratch/opdracht_4-geo)
-    
-    - IIFE is een functie die zichzelf runt. Haalt vars uit Global scope.
-     ```javascript
-     (
-        function(){
-             console.log("IIFE")
-        }()
-     )
-     // or
-     (
-         function(){
-             console.log("IIFE")
-         }
-     )()
-    ```
-
-***
-
-### Basis structuur voor single page web app opzetten
-
-
-***
-
-### Code review
-
-
-***
-
 
 ### Used source:
-[Web Frameworks: Pros And Cons Of Using Frameworks - Webdesigner.com](http://1stwebdesigner.com/web-frameworks/)
-[The disadvantages of single page applications - Adam Silver](http://adamsilver.io/articles/the-disadvantages-of-single-page-applications/)
-[Single-page application vs. multiple-page application](https://neoteric.eu/single-page-application-vs-multiple-page-application)
+- [Web Frameworks: Pros And Cons Of Using Frameworks - Webdesigner.com](http://1stwebdesigner.com/web-frameworks/)
+- [The disadvantages of single page applications - Adam Silver](http://adamsilver.io/articles/the-disadvantages-of-single-page-applications/)
+- [Single-page application vs. multiple-page application](https://neoteric.eu/single-page-application-vs-multiple-page-application)
