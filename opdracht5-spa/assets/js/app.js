@@ -1,54 +1,143 @@
 ( function() {
     "use strict";
 
-    var section = document.querySelectorAll('section');
-    var hash = "#home";
 
-    var app = {
-        init: function(){
-            routes.init()
+
+
+    var helpers = {
+        createSection: function(options){
+            var mainContainer = document.querySelector('main');
+
+        	let { element, id, childrenArray } = options;
+
+        	var parent = document.createElement(element)
+        	var children;
+
+        	for (var x in options) {
+        		if (typeof options[x] !== "object") {
+        			parent[x] = options[x]
+        		}
+        	}
+
+        	//
+        	if (childrenArray) {
+        		children = childrenArray.map((item)=>{
+        			var child;
+        			child = document.createElement(item.element)
+
+        			if (item.innerHMTL) {
+        				child.innerHTML = item.innerHMTL
+        			}
+        			if (item.className) {
+        				child.className = item.className
+        			}
+        			if (item.id) {
+        				child.id = item.id
+        			}
+        			if (item.event) {
+        				child.addEventListener("click", item.event)
+        			}
+        			return child
+        		})
+
+
+        		for (var i = 0; i < children.length; i++) {
+        			parent.appendChild(children[i])
+        		}
+        	}
+            mainContainer.appendChild(parent)
+            // add this item to the nav
+            this.createNavElement(parent.id, parent.className)
+        	return parent
+        },
+        createNavElement: function(id, className){
+            var nav = document.querySelector('nav ul');
+
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            a.innerText = id;
+            a.href= `#${id}`;
+
+            li.appendChild(a)
+
+            console.dir(a);
+            nav.appendChild(li)
+
+
         }
     }
 
-    var routes = {
-        init: function(){
-            var newURL = location.href,
-                newHash = location.hash;
 
-            // if the hash has changed and a handler has been bound...
-            if ( newHash != oldHash && typeof window.onhashchange === "function" ) {
-
-            // execute the handler
-            onhashchange({
-               type: "hashchange",
-               oldURL: oldURL,
-               newURL: newURL
-            });
-        },
-
-        hashChange: function(hash){
-            sections.toggle(hash)
-        }
+    var Pages = function(pagename){
+        var pageContent = "Newly generated page"
+        var htmlElement = helpers.createSection({
+            element:"section",
+            id:pagename,
+            childrenArray:[
+                {element:"h1", innerHMTL: pageContent}
+            ]
+        })
 
     };
 
+    var options = {
+        page1: new Pages("Page1"),
+        initRoute: document.querySelector("#home"),
+        sections: document.querySelectorAll('section'),
+    }
+
+    console.log(options);
+
+    var app = {
+        init: function(){
 
 
-    var sections = (function(route){
-                var selectedRoute = document.querySelector(route);
-
-                for (var i = 0; i < section.length; i++) {
-                    section[i].classList.add("hidden")
-                }
-
-                selectedRoute.classList.remove("hidden")
-
-        return {
-            ...toggle
+            routes.init();
         }
-    })
+    };
 
 
+    var routes = {
+        init: function(){
+            console.log("Router initialized");
+            let { sections, initRoute } = options;
+
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.add("hidden")
+            };
+
+            initRoute.classList.remove("hidden");
+
+            this.hashChange();
+        },
+
+        hashChange: function(){
+            // source: https://developer.mozilla.org/nl/docs/Web/API/WindowEventHandlers/onhashchange 
+            window.addEventListener("hashchange", function() {
+
+                var hash = location.hash;
+                    sections.toggle(hash);
+
+            },false);
+        },
+    };
+
+
+    var sections = {
+        toggle: function(route){
+            let  section = options.sections;
+
+            var selectedRoute = document.querySelector(route);
+            console.log(route);
+
+            for (var i = 0; i < section.length; i++) {
+                section[i].classList.add("hidden")
+            };
+
+            selectedRoute.classList.remove("hidden")
+
+        }
+    }
 
 
     app.init();
