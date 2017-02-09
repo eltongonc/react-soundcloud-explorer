@@ -103,9 +103,15 @@
             console.log("Router initialized");
             let { sections, initRoute } = options;
 
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].classList.add("hidden");
-            }
+
+            // for (var i = 0; i < sections.length; i++) {
+            //     sections[i].classList.add("hidden");
+            // }
+            // I replaced the for loop with a nice clean forEach Function - Dave Bitter
+
+            sections.forEach(function (sec) {
+                sec.classList.add("hidden");
+            });
 
             initRoute.classList.remove("hidden");
 
@@ -117,8 +123,10 @@
             // source: https://developer.mozilla.org/nl/docs/Web/API/WindowEventHandlers/onhashchange
             window.addEventListener("hashchange", function() {
 
-                var hash = location.hash;
-                    sections.toggle(hash);
+                // var hash = location.hash;
+                //     sections.toggle(hash);
+                // No need for new var just for this, btw use let/const consistently - Dave Bitter
+                sections.toggle(location.hash);
 
             },false);
         },
@@ -128,14 +136,19 @@
     // handles the sections
     var sections = {
         toggle: function(route){
-            let  section = options.sections;
+            let  sections = options.sections;
 
             var selectedRoute = document.querySelector(route);
             console.log(route);
 
-            for (var i = 0; i < section.length; i++) {
-                section[i].classList.add("hidden");
-            }
+            // for (var i = 0; i < sections.length; i++) {
+            //     sections[i].classList.add("hidden");
+            // }
+            // I replaced the for loop with a nice clean forEach Function - Dave Bitter
+
+            sections.forEach(function (sec) {
+                sec.classList.add("hidden");
+            });
 
             selectedRoute.classList.remove("hidden");
             this.loadContent();
