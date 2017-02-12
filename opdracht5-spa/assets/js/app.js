@@ -19,7 +19,6 @@
             // Builds children if there is a childrenArray and appends it to a parent
             if (childrenArray) {
                 childrenArray.forEach((item)=>{
-                    console.log(item);
                     let child = document.createElement(item.element);
                     for (let x in item) {
                             child[x] = item[x];
