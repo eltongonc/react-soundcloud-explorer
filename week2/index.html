@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>LOGO</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <!-- <li><a href="#frontend">Front-end</a></li> -->
+                <!-- <li><a href="#content">Search</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h1>home</h1>
+            <form script="void(0)" class="search" action="#content">
+                <input type="text" name="q" placeholder="Search a song">
+            </form>
+        </section>
+        <section id="content"></main>
+    </main>
+
+
+    <script id="entry-template" type="text/x-handlebars-template">
+        <h1>Search results</h1>
+        {{#each this}}
+            <h1>Title: {{title}}</h1>
+            <p>Genre: {{genre}}</p>
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//{{uri}}&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+        {{/each}}
+
+        <h2>Search some more</h2>
+        <form class="search" action="#search">
+            <input type="text" name="song" placeholder="Search a song">
+        </form>
+    </section>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+    <script src="./js/music.js"></script>
+</body>
+</html>
