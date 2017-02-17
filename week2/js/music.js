@@ -15,8 +15,7 @@
         });
     });
 
-
-    //SOUNDCLOUD_API
+    //SOUNDCLOUD_API presets
     const SOUNDCLOUD_API = {
         clientId: ``,
         search: 'afro',
@@ -42,7 +41,6 @@
                     sections.createContent(data, htmlInput, htmlOutput)
                     // Adds a spinner everytime a call is made
                     helpers.removeLoader()
-
                 }
             }
             // you can have errors before
@@ -57,7 +55,7 @@
             return data
         },
         checkExistingRoute: function(hash) {
-            // Gets the array that is stored in global window object
+            // Gets the array of sections that is stored in global window object
             let { sections } = global
             // Turns an id into a #-less string
             let replacedHash = hash.replace("#","");
@@ -69,8 +67,9 @@
                 }
             })
             // The user sees initRoute if the hash doesn't exist
-            route == null || route == "" ? localStorage.getItem("user")?
-                route = "#home": route = initRoute :
+            route == null || route == "" ?
+                // If an user is stored in the localStorage you won't go to login
+                localStorage.getItem("user")? route = "#home": route = initRoute :
                 route;
 
             return document.querySelector(route);
@@ -78,20 +77,20 @@
         showSelectedRoute: function(route) {
             // Gets the array that is stored in global window object
             let { sections } = global;
-            // I replaced the for loop with a nice clean forEach Function - Dave Bitter
+            // Hide all sections
             sections.forEach(function (section) {
-                // Hide all sections
                 section.classList.add("hidden");
-
             });
             // Show the selected route
             route.classList.remove("hidden");
         },
+        // loading spinner
         addLoader: function() {
         	dialog.setAttribute('open', '');
         	main.classList.add('de-emphasized');
         },
         removeLoader: function() {
+            // src: http://dabblet.com/gist/1326eb460b0dff91d638
         	if (dialog.close) {
         		dialog.close();
          	}
@@ -100,24 +99,17 @@
         	}
          	main.classList.remove('de-emphasized');
         },
-        dateFormat: function(date) {
-            // console.log(date);
-            var splittedDate = {
-                day: date.getDate(),
-                month: date.getMonth()
-            }
-            // var newDate =
-        }
     }
 
     let appOptions = (function(){
+        // sets the sections to the global window options so they available throughouth the app
         self.sections = document.querySelectorAll('main > section');
         return {
             sections: self.sections,
             initRoute: helpers.checkExistingRoute(location.hash)
         }
     })();
-    // Function to setup the app
+    // Function to initialize the app
     let app = {
         init: function(){
             routes.init();
@@ -129,32 +121,34 @@
         init: function(){
             // sets spinner
             helpers.addLoader()
-            // gets a list of data
+            // gets a list of data and store it in the dom
             helpers.apiCall(SOUNDCLOUD_API.url(), "#entry-template",'#content')
             // shows the current initialroute
             helpers.showSelectedRoute(appOptions.initRoute)
             // function that checks if the route changes
-            this.hashChange();
+            this.routeChange();
         },
         // change the route
-        hashChange: window.onhashchange = function() {
+        routeChange: window.onhashchange = function() {
+            // splits the hash into an array of [hash, "whatever is after tge /"]
             var hash = location.hash.toString().split("/");
+            // checks if the hash exists
             let  currentSection = helpers.checkExistingRoute(hash[0])
             // Uses the hash to toggle the sections
             sections.toggle(currentSection);
-            // Use the id as hash if there is any
+            // Use the id as route if it exist int routes
             if(routes[currentSection.id]){
                 routes[currentSection.id](hash[1])
             }
         },
         login: function(){
-            var form = document.querySelector('form[action="#home"]')
+            // select the login form and stop it from updating the page
+            var form = document.querySelector('form[action="#home"]');
             form.addEventListener("submit", function(e){
                 e.preventDefault()
-
                 // TODO link to database
-                var username = document.querySelector('#field-email').value;
-                var password = document.querySelector('#field-password').value;
+                var username = this.children['field-email'].value;
+                var password = this.children['field-password'].value;
                 if(username && password){
                     localStorage.setItem("user", username)
                     location.replace("/#home")
@@ -165,31 +159,26 @@
         },
         // Routes for home
         home: function(){
+            // select the home search form and stop it from updating the page
             var form = document.querySelector('form[action="#search"]')
-            // search input
             form.addEventListener("submit", function(e){
-                // Stops the form from loading a page
                 e.preventDefault()
                 // Adds a loadings spinner
                 helpers.addLoader()
-                // Uses userinput as querie
+                // Uses userinput as query
                 SOUNDCLOUD_API.search = this.children[0].value
-                // Makes ajax call
+                // gets a list of data and store it in the dom
                 helpers.apiCall(SOUNDCLOUD_API.url(), "#entry-template",'#content')
             })
-
-            var homeData = localStorage.getItem("user")
-            // sections.createContent(homeData)
         },
         // Routes for searched content
         player: function(name){
+            // Get the data from localStorage and filter the results and append it to the dom
             var data = JSON.parse(localStorage.getItem('data'));
-            // console.log(data);
             var filteredData = data.filter(function(item){
                 return item.permalink == name
             })
             sections.createContent(filteredData, "#player-template", "#player")
-            // helpers.apiCall(SOUNDCLOUD_API.url(song), );
         }
 
     };
@@ -200,9 +189,10 @@
             helpers.showSelectedRoute(route);
         },
         createContent: function(data, htmlInput, htmlOutput){
-            // Handlebars selection
-            self.source = document.querySelector(htmlInput).innerHTML
-            template = Handlebars.compile(self.source);
+            // Handlebars selection and Templating
+            var source = document.querySelector(htmlInput).innerHTML
+            template = Handlebars.compile(source);
+            // TODO cleanup this context var
             var context = data.map((item)=>{
                 return {
                     pageTitle: "Title",
@@ -220,7 +210,6 @@
                     userImg: item.user.avatar_url || "../img/user.svg",
                     userLink: item.user.permalink_url,
                     userName: item.user.username,
-
                 }
             })
             var html = template(context);
