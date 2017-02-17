@@ -1,5 +1,5 @@
 ## Feedback
-- Use strict mode only in IFFE.
+- Using strict mode outside of your IFFE can cause problems with other libraries who are made to work without.
 - Script in head with async or defer attribute.
 - Use eventListeners
 - Multiple articles in one section.
@@ -82,5 +82,5 @@ Debugging wordt makkelijker.
     }
 ```
 
-Dont
+Don't
 inro - [Learn Functional prog](learnyouahasjekk.com)

@@ -1,3 +1,406 @@
+/*===== Tags =====*/
+body {
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    text-transform: uppercase;
+}
+
+main {
+    transition: .6s filter;
+}
+main.de-empasized {
+    filter: blur(5px) contrast(.8) brightness(.8);
+}
+aside {
+    padding: 1em;
+    margin: 0;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+article {
+    margin: 1em;
+    padding: 1em;
+}
+
+dialog {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid silver;
+    border-radius: .5em;
+}
+dialog:not([open]) {
+	display: none;
+}
+input,
+button {
+    font-size: 1em;
+    align-self: center;
+    padding: 1em;
+    border: none;
+}
+input {
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+
+/*===== Componentens =====*/
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    min-width: 50%;
+    max-width: 50vw;
+    padding: 3em;
+}
+form input:not([type="checkbox"]) {
+    min-width: 100%;
+    padding: .5em;
+    margin-bottom: 1em;
+}
+
+form input:focus + label {
+    /*visibility: hidden;*/
+    font-size: 0.8em;
+    bottom: 6em;
+}
+
+form label:not([for="field-stay-logged-in"]) {
+    position: relative;
+    left: 1em;
+    bottom: 2.5em;
+    transition: .3s;
+}
+
+form label.up {
+    bottom: 4.5em;
+}
+
+
+/*===== Layout =====*/
+body {
+    margin-left: auto;
+    margin-right: auto;
+}
+header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav h1 {
+    margin-left: 1em;
+}
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+aside {
+    max-width: 20em;
+    background: white;
+    box-shadow: 0 0 0.5em #ccc;
+    position: fixed;
+    right: -19.5em;
+    bottom: 0;
+    height: 86vh;
+}
+aside::before {
+    content: "CHAT \25C0";
+    transform: rotate(-90deg);
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+section {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.search + section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2,
+h3 {
+    text-align: center;
+}
+
+
+article {
+    width: 20em;
+    /*max-width: 30em;*/
+    position: relative;
+}
+
+#home article a::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+}
+
+article img {
+    float: left;
+    margin-right: 1em;
+}
+
+article img {
+    max-width: 5em;
+}
+
+article h1 {
+    margin: 0;
+    margin-bottom: 1em;
+    word-wrap: break-word;
+}
+article footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1em;
+    font-size: 0.9em
+}
+figure {
+    margin: 0;
+}
+
+iframe,
+iframe + article {
+    min-width: 90vw;
+    align-content: center;
+}
+
+label,
+label + input {
+    max-width: 10em;
+}
+
+form a,
+form a + button {
+    width: 100%;
+    text-align: center;
+}
+
+fieldset {
+    max-width: 20em;
+    border: 0
+}
+
+fieldset label svg {
+    max-width: 2em;
+    margin: 0;
+}
+
+fieldset input[type="radio"] {
+    visibility: hidden;
+    height: 0;
+    widows: 0;
+}
+fieldset input[type="radio"]:checked + label {
+    background-color: red;
+}
+fieldset input[type="radio"]:focus + label{
+    border: solid red;
+}
+
+fieldset input[type="radio"] + label:hover {
+    animation:
+}
+
+/*===== Theme =====*/
+body {
+    /*background: url(../img/background.jpg);*/
+    /*background: hsl(20, 50%, 10%);*/
+    background-image:
+        linear-gradient(90deg, honeydew 17px, transparent 0),
+        linear-gradient(90deg, #F3F9D2 23px, transparent 0),
+        linear-gradient(90deg, white 41px, transparent 0);
+    background-size: 41px 100%, 61px 100%, 83px 100%;
+    /*background-size: cover;*/
+    /*background-attachment: fixed;*/
+    /*background-color: honeydew;*/
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    box-shadow: 0 0.1em 1em #e3e3e3;
+    background-color: white;
+}
+article {
+    background-color: white;
+    box-shadow: 0 0.1em 1em #ccc;
+}
+
+article h1 {
+    color: #EF3B3A;
+}
+
+dialog {
+    background: rgba(0,0,0,0.3);
+}
+
+form[method="post"] {
+    background: white;
+    box-shadow: 0 0 1em  #e3e3e3;
+}
+form input:not([type="checkbox"]) {
+    box-shadow: 0 0.1em #e3e3e3
+}
+
+/*src: https://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements#post-7170*/
+button,
+input[type="submit"] {
+    background-color: #EF3B3A;
+    color: white;
+	padding:10px;
+	position:relative;
+	color:#fff;
+	background-image: linear-gradient(bottom, rgb(100,170,30) 0%, rgb(129,212,51) 100%);
+	box-shadow: inset 0px 1px 0px #b2f17f, 0px 6px 0px #772221;
+	border-radius: 5px;
+}
+
+button:active,
+input[type="submit"]:active  {
+	top:7px;
+	background-image: linear-gradient(bottom, rgb(100,170,30) 100%, rgb(129,212,51) 0%);
+	box-shadow: inset 0px 1px 0px #772221, inset 0px -1px 0px #772221;
+	background: #772221;
+}
+
+button:focus,
+button:hover,
+input[type="submit"]:focus,
+input[type="submit"]:hover  {
+    outline: 0
+}
+
+
+a,
+i {
+    color: #EF3B3A
+}
+a span {
+    text-transform: uppercase;
+}
+a:focus {
+    box-shadow:  0 0.1em #EF3B3A;
+}
+/*===== Helpers =====*/
+/*src: https://codepen.io/joostf/pen/VKyPxk*/
+form[method="post"] input:valid {
+    box-shadow:  0 0.1em honeydew;
+}
+form[method="post"] input:invalid {
+    box-shadow:  0 0.1em #EF3B3A;
+}
+.loader {
+    width: 512px;
+    height: 512px;
+    background: url(../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: loader 1s infinite steps(8);
+    transform: scale(0.25);
+}
+@keyframes loader {
+    to {
+        background-position: -4048px 0
+    }
+}
+
 .hidden {
-    display: none
+    display: none;
+}
+
+
+
+/*--------- add custom checkbox --------------*/
+/*--------- make this rating part better --------------*/
+fieldset {
+    border: 0;
+    max-width: 50vw;
+    height: 10em;
+}
+fieldset legend {
+    display: none;
+}
+fieldset div {
+    display: flex;
+}
+
+fieldset label[for^="rating"] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+
+fieldset svg {
+    height: 2em;
+    width: 100%;
+}
+
+fieldset svg:hover {
+    height: 2em;
+    width: 100%;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+
+}
+
+/*source: https://css-tricks.com/snippets/css/shake-css-keyframe-animation/*/
+@keyframes shake {
+  10%, 90% {
+    transform: rotate(10deg);
+  }
+
+  20%, 80% {
+    transform: rotate(-10deg);
+  }
+
+  30%, 50%, 70% {
+    transform: rotate(10deg);
+  }
+
+  40%, 60% {
+    transform: rotate(-10deg);
+  }
 }
