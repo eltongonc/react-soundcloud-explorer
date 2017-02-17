@@ -1,33 +1,29 @@
-var dialog = document.querySelector('dialog');
-var main = document.querySelector('main');
-var inputs = document.querySelectorAll('form input:not([type="checkbox"])');
-
-inputs.forEach((input)=>{
-    input.addEventListener("change", function(){
-        if(this.value != ""){
-            document.querySelector(`label[for=${this.id}]`).classList.add("up")
-        }else {
-            document.querySelector(`label[for=${this.id}]`).classList.remove("up")
-        }
-    });
-});
-
-
 (function(global){
+    // Code for the spinner
+    var dialog = document.querySelector('dialog');
+    var main = document.querySelector('main');
+    var inputs = document.querySelectorAll('form input:not([type="checkbox"])');
+
+    // Code for fancy labels
+    inputs.forEach((input)=>{
+        input.addEventListener("change", function(){
+            if(this.value != ""){
+                document.querySelector(`label[for=${this.id}]`).classList.add("up")
+            }else {
+                document.querySelector(`label[for=${this.id}]`).classList.remove("up")
+            }
+        });
+    });
+
 
     //SOUNDCLOUD_API
     const SOUNDCLOUD_API = {
-        clientId: `E9bvER0kSJUJFDHCllZ3IL5h18C7QICR`,
+        clientId: ``,
         search: 'afro',
         limit: '60',
         url: function(songId){
             // More info: https://developers.soundcloud.com/docs/api/reference#tracks
-            // return `https://api.soundcloud.com/resolve?url=http://soundcloud.com/search/sounds?q=trending&client_id=${this.clientId}`
-            if (songId) {
-                return `https://api.soundcloud.com/tracks${songId}?client_id=${this.clientId}`
-            }else{
-                return `https://api.soundcloud.com/tracks?client_id=${this.clientId}&limit=${this.limit}&q=${this.search}`
-            }
+            return `https://api.soundcloud.com/tracks?client_id=${this.clientId}&limit=${this.limit}&q=${this.search}`
         }
     }
 
