@@ -151,7 +151,7 @@
                 var password = this.children['field-password'].value;
                 if(username && password){
                     localStorage.setItem("user", username)
-                    location.replace("/#home")
+                    location.replace("#home")
                 }else {
                     console.log("input not correct")
                 }
