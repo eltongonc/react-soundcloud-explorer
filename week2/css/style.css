@@ -1,3 +1,10 @@
+@font-face {
+    font-family: Amps;
+    src:local('Arial'),
+        local('Helvetica'),
+        local('Verdana');
+    unicode-range: U+26;
+}
 /*===== Tags =====*/
 body {
     font-weight: 300;
@@ -18,10 +25,11 @@ main.de-empasized {
     filter: blur(5px) contrast(.8) brightness(.8);
 }
 aside {
-    padding: 1em;
+    padding: 0em;
     margin: 0;
 }
-ul {
+ul,
+ol {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -55,7 +63,19 @@ button {
     align-self: center;
     padding: 1em;
     border: none;
+    cursor: pointer;
 }
+
+a[role="button"]:hover,
+a[role="button"]:focus,
+input:not([type="email"]):not([type="password"]):not([type="text"]):focus,
+input:not([type="email"]):not([type="password"]):not([type="text"]):hover,
+button:focus,
+button:hover {
+    background-color: #772221
+}
+a[role="button"],
+button,
 input {
     outline: 0;
 }
@@ -63,6 +83,7 @@ input {
 a {
     text-decoration: none;
     outline: 0;
+    font-family: Amps, 'Montserrat', sans-serif;
 }
 
 img,
@@ -72,7 +93,7 @@ svg {
 
 
 /*===== Componentens =====*/
-form {
+form:not([action="#"]) {
     display: flex;
     flex-wrap: wrap;
     align-self: center;
@@ -86,7 +107,9 @@ form input:not([type="checkbox"]) {
     margin-bottom: 1em;
 }
 
-form input:focus + label {
+form input[type="text"]:focus + label,
+form input[type="email"]:focus + label,
+form input[type="password"]:focus + label {
     /*visibility: hidden;*/
     font-size: 0.8em;
     bottom: 6em;
@@ -125,22 +148,116 @@ nav ul {
     flex-grow: 1;
     flex-wrap: wrap;
 }
-
+/*chat*/
 aside {
+    transition: 0.5s;
     max-width: 20em;
     background: white;
     box-shadow: 0 0 0.5em #ccc;
     position: fixed;
-    right: -19.5em;
+    right: 0;
     bottom: 0;
-    height: 86vh;
+    padding-bottom: 1em;
 }
-aside::before {
-    content: "CHAT \25C0";
-    transform: rotate(-90deg);
+aside span {
+    transition: 0.3s;
+    cursor: pointer;
+    content: "Start a chat";
+    display: flex;
+    font-weight: 400;
+    color: #EF3B3A;
+    padding: 1em;
+    justify-content: center;
+    background-image:
+        linear-gradient(90deg, honeydew 17px, transparent 0),
+        linear-gradient(90deg, #F3F9D2 23px, transparent 0),
+        linear-gradient(90deg, white 41px, transparent 0);
+    background-size: 41px 100%, 61px 100%, 83px 100%;
+}
+aside span:hover {
+    background-color: rgb(215, 219, 203);
+}
+aside:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+aside form {
+    display: flex;
+}
+aside form label {
     position: absolute;
-    left: 0;
-    top: 50%;
+    left: -9999;
+}
+
+aside ol {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    margin: 0;
+}
+aside ol li {
+    min-width: 100%;
+    margin-bottom: 1em
+}
+aside ol li > p {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-align: left;
+    margin: 0;
+    box-shadow: 0 0 .05em grey;
+    background-color: rgb(215, 219, 203);
+}
+
+aside ol li:nth-of-type(odd) {
+    text-align: right;
+}
+aside ol li:nth-of-type(even) p{
+    border-radius: 0 2em 2em 2em;
+}
+aside ol li:nth-of-type(odd) p{
+    border-radius: 1em 1em 0 1em;
+}
+aside ol li:nth-of-type(odd) p[data-status="READ"]{
+    color: #84DCC6;
+}
+aside footer{
+    font-size: .7em;
+}
+
+aside footer p {
+    margin: 0.1em 0;
+}
+
+aside footer time{
+    color: #84DCC6;
+
+}
+
+aside ol ~ form {
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: none
+}
+
+aside ol ~ form textarea {
+    border: none;
+    resize: none;
+    position: relative;
+}
+
+aside ol ~ form label[for="field-message"] {
+    position: absolute;
+    z-index: 2;
+    bottom: 1.5em;
+    color: #999;
+}
+textarea:focus {
+    outline: 0;
+}
+textarea:focus + label {
+    font-size: 0.01em;
 }
 
 section {
@@ -194,8 +311,11 @@ article footer {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 1em;
-    font-size: 0.9em;
+    margin: 2em;
+    font-size: 0.9em
+}
+article footer a{
+    min-width: 100%
 }
 figure {
     margin: 0;
@@ -218,40 +338,10 @@ form a + button {
     text-align: center;
 }
 
-fieldset {
-    max-width: 20em;
-    border: 0
-}
 
-fieldset label svg {
-    max-width: 2em;
-    margin: 0;
-}
-
-fieldset input[type="radio"] {
-    visibility: hidden;
-    height: 0;
-    widows: 0;
-}
-fieldset input[type="radio"]:checked + label {
-    background-color: red;
-}
-fieldset input[type="radio"]:focus + label{
-    border: solid red;
-}
-
-fieldset input[type="radio"] + label:hover {
-    animation:
-}
 
 /*===== Theme =====*/
 body {
-    /*background: hsl(20, 50%, 10%);*/
-    /*background-image:
-        linear-gradient(90deg, honeydew 17px, transparent 0),
-        linear-gradient(90deg, #F3F9D2 23px, transparent 0),
-        linear-gradient(90deg, white 41px, transparent 0);
-    background-size: 41px 100%, 61px 100%, 83px 100%;*/
     background: url(../img/background.jpg);
     background-size: cover;
     background-attachment: fixed;
@@ -286,14 +376,15 @@ form input:not([type="checkbox"]) {
 
 /*src: https://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements#post-7170*/
 button,
-input[type="submit"] {
+input[type="submit"],
+a[role="button"] {
     background-color: #EF3B3A;
     color: white;
 	padding:10px;
 	position:relative;
 	color:#fff;
 	background-image: linear-gradient(bottom, rgb(100,170,30) 0%, rgb(129,212,51) 100%);
-	box-shadow: inset 0px 1px 0px #b2f17f, 0px 6px 0px #772221;
+	box-shadow: 0px 6px 0px #772221;
 	border-radius: 5px;
 }
 
@@ -305,12 +396,7 @@ input[type="submit"]:active  {
 	background: #772221;
 }
 
-button:focus,
-button:hover,
-input[type="submit"]:focus,
-input[type="submit"]:hover  {
-    outline: 0
-}
+
 
 
 a,
@@ -322,6 +408,7 @@ a span {
 }
 a:focus {
     box-shadow:  0 0.1em #EF3B3A;
+    color: #772221;
 }
 /*===== Helpers =====*/
 /*src: https://codepen.io/joostf/pen/VKyPxk*/
@@ -337,9 +424,8 @@ form[method="post"] input:invalid {
     background: url(../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
     text-indent: 200%;
     white-space: nowrap;
-    overflow: hidden;
     animation: loader 1s infinite steps(8);
-    transform: scale(0.25);
+    transform: scale(0.10);
 }
 @keyframes loader {
     to {
@@ -348,59 +434,128 @@ form[method="post"] input:invalid {
 }
 
 .hidden {
-    display: none;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
 }
 
+:target {
+    transition: 3s;
+    opacity: 1;
+}
 
+.offscreen {
+    bottom: -34em;
+    width: 8em;
+    overflow: hidden;
+    opacity: 0.5;
+}
 
-/*--------- add custom checkbox --------------*/
-/*--------- make this rating part better --------------*/
+/*--------- login --------------*/
+input[type="checkbox"] {
+    opacity: 0;
+}
+input[type="checkbox"] + label::before {
+    content: "\a0";
+    display: inline-block;
+    vertical-align: .2em;
+    width: .8em;
+    height: .8em;
+    background: silver;
+    margin-right: .2em;
+    text-indent: .15em;
+    line-height: .65;
+    border-radius: .1em;
+}
+input[type="checkbox"]:checked + label::before {
+    content: "\2713";
+    background: #D7DBCB;
+}
+input[type="checkbox"]:focus + label::before {
+    border:0.1em solid #EF3B3A;
+}
+
+input:-webkit-autofill{
+    background-color: #999
+}
+
+/*--------- rating --------------*/
 fieldset {
     border: 0;
-    max-width: 50vw;
-    height: 10em;
+    margin: 4em 0;
+    padding: 0;
+
 }
-fieldset legend {
-    display: none;
-}
+
 fieldset div {
     display: flex;
 }
 
-fieldset label[for^="rating"] {
+
+fieldset input[type="radio"] {
+    opacity: 0;
+}
+fieldset input[type="radio"] + label{
+    transition: .3s;
+    color:  #EF3B3A;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column-reverse;
+    position: relative;
+    float: left;
+    margin-right: 2em;
+    cursor: pointer;
     text-align: center;
 }
+
 
 fieldset svg {
     height: 2em;
     width: 100%;
+    max-width: 2em;
+    margin: 0;
+    border: 0.1em solid rgb(215, 219, 203);
+    padding: .2em;
+    border-radius: 0.3em;
 }
 
-fieldset svg:hover {
-    height: 2em;
-    width: 100%;
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+fieldset label:hover svg > circle,
+fieldset label:hover svg > path,
+fieldset input[type="radio"]:checked + label svg > circle,
+fieldset input[type="radio"]:checked + label svg > path {
+    transition: 1s;
+    r: 100;
+    border-radius: 0.3em;
+    transform: scale(2);
+}
+
+fieldset input[type="radio"]:checked + label svg {
+    background: rgb(215, 219, 203);
+}
+
+/*--------- Step indicator --------------*/
+section nav h1 {
+    text-align: center;
+}
+/* source: https://css-tricks.com/html5-progress-element/*/
+progress {
+    -webkit-appearance: none;
+   appearance: none;
+   width: 100%;
+   height: 1em;
 
 }
 
-/*source: https://css-tricks.com/snippets/css/shake-css-keyframe-animation/*/
-@keyframes shake {
-  10%, 90% {
-    transform: rotate(10deg);
-  }
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 0.1em;
+}
 
-  20%, 80% {
-    transform: rotate(-10deg);
-  }
+progress[value]::-webkit-progress-value {
+  background-color: #84DCC6;
 
-  30%, 50%, 70% {
-    transform: rotate(10deg);
-  }
+}
 
-  40%, 60% {
-    transform: rotate(-10deg);
-  }
+nav ol{
+    display: flex;
+    justify-content: space-between;
 }
