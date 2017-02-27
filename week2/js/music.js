@@ -103,9 +103,9 @@
         init: function(){
             // function that checks if the route changes
             // this.hashChange();
-            sections.toggle()
-
-            if (!localStorage.data) {
+            sections.toggle();
+            // Do an api call only if it is not saved in local storage;
+            if (localStorage.data) {
                 sections.createContent(JSON.parse(localStorage.data), "#entry-template",'#content');
             }else {
                 // sets spinner
@@ -166,7 +166,7 @@
                 let password = document.querySelector('#field-password').value;
                 if(username && password){
                     localStorage.setItem("user", username);
-                    location.replace("/#home");
+                    location.replace("#home");
                 }
             });
         },

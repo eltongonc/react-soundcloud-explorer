@@ -5,7 +5,8 @@
         local('Verdana');
     unicode-range: U+26;
 }
-/*===== Tags =====*/
+
+
 body {
     font-weight: 300;
     line-height: 1.5;
@@ -57,6 +58,7 @@ dialog {
 dialog:not([open]) {
 	display: none;
 }
+
 input,
 button {
     font-size: 1em;
@@ -66,23 +68,16 @@ button {
     cursor: pointer;
 }
 
-a[role="button"]:hover,
-a[role="button"]:focus,
-input:not([type="email"]):not([type="password"]):not([type="text"]):focus,
-input:not([type="email"]):not([type="password"]):not([type="text"]):hover,
+
+a:focus,
 button:focus,
-button:hover {
-    background-color: #772221
-}
-a[role="button"],
-button,
-input {
+input:focus,
+textarea:focus {
     outline: 0;
 }
 
 a {
     text-decoration: none;
-    outline: 0;
     font-family: Amps, 'Montserrat', sans-serif;
 }
 
@@ -92,7 +87,6 @@ svg {
 }
 
 
-/*===== Componentens =====*/
 form:not([action="#"]) {
     display: flex;
     flex-wrap: wrap;
@@ -110,9 +104,13 @@ form input:not([type="checkbox"]) {
 form input[type="text"]:focus + label,
 form input[type="email"]:focus + label,
 form input[type="password"]:focus + label {
-    /*visibility: hidden;*/
     font-size: 0.8em;
     bottom: 6em;
+}
+form input[type="text"]:hover + label,
+form input[type="email"]:hover + label,
+form input[type="password"]:hover + label {
+    cursor: pointer;
 }
 
 form label:not([for="field-stay-logged-in"]) {
@@ -127,7 +125,7 @@ form label.up {
 }
 
 
-/*===== Layout =====*/
+
 body {
     margin-left: auto;
     margin-right: auto;
@@ -147,117 +145,6 @@ nav ul {
     justify-content: space-around;
     flex-grow: 1;
     flex-wrap: wrap;
-}
-/*chat*/
-aside {
-    transition: 0.5s;
-    max-width: 20em;
-    background: white;
-    box-shadow: 0 0 0.5em #ccc;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    padding-bottom: 1em;
-}
-aside span {
-    transition: 0.3s;
-    cursor: pointer;
-    content: "Start a chat";
-    display: flex;
-    font-weight: 400;
-    color: #EF3B3A;
-    padding: 1em;
-    justify-content: center;
-    background-image:
-        linear-gradient(90deg, honeydew 17px, transparent 0),
-        linear-gradient(90deg, #F3F9D2 23px, transparent 0),
-        linear-gradient(90deg, white 41px, transparent 0);
-    background-size: 41px 100%, 61px 100%, 83px 100%;
-}
-aside span:hover {
-    background-color: rgb(215, 219, 203);
-}
-aside:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-
-aside form {
-    display: flex;
-}
-aside form label {
-    position: absolute;
-    left: -9999;
-}
-
-aside ol {
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 1em;
-    margin: 0;
-}
-aside ol li {
-    min-width: 100%;
-    margin-bottom: 1em
-}
-aside ol li > p {
-    display: inline-block;
-    padding: 0.5em 1em;
-    text-align: left;
-    margin: 0;
-    box-shadow: 0 0 .05em grey;
-    background-color: rgb(215, 219, 203);
-}
-
-aside ol li:nth-of-type(odd) {
-    text-align: right;
-}
-aside ol li:nth-of-type(even) p{
-    border-radius: 0 2em 2em 2em;
-}
-aside ol li:nth-of-type(odd) p{
-    border-radius: 1em 1em 0 1em;
-}
-aside ol li:nth-of-type(odd) p[data-status="READ"]{
-    color: #84DCC6;
-}
-aside footer{
-    font-size: .7em;
-}
-
-aside footer p {
-    margin: 0.1em 0;
-}
-
-aside footer time{
-    color: #84DCC6;
-
-}
-
-aside ol ~ form {
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: none
-}
-
-aside ol ~ form textarea {
-    border: none;
-    resize: none;
-    position: relative;
-}
-
-aside ol ~ form label[for="field-message"] {
-    position: absolute;
-    z-index: 2;
-    bottom: 1.5em;
-    color: #999;
-}
-textarea:focus {
-    outline: 0;
-}
-textarea:focus + label {
-    font-size: 0.01em;
 }
 
 section {
@@ -397,21 +284,53 @@ input[type="submit"]:active  {
 }
 
 
+a[role="button"]:hover,
+a[role="button"]:focus,
+input:not([type="email"]):not([type="password"]):not([type="text"]):focus,
+input:not([type="email"]):not([type="password"]):not([type="text"]):hover,
+button:focus,
+button:hover {
+    background-color: #772221;
+}
 
+
+input[type="text"]:hover + label,
+input[type="text"]:focus + label,
+input[type="email"]:hover + label,
+input[type="email"]:focus + label,
+input[type="password"]:hover + label,
+input[type="password"]:focus + label {
+    color: #EF3B3A
+}
 
 a,
 i {
-    color: #EF3B3A
+    color: #772221
 }
 a span {
     text-transform: uppercase;
 }
-a:focus {
-    box-shadow:  0 0.1em #EF3B3A;
-    color: #772221;
+
+a:focus,
+a:not([role="button"]):hover {
+    border-bottom: 0.1em solid #EF3B3A;
+    color: #EF3B3A;
 }
+
+
+
+
 /*===== Helpers =====*/
 /*src: https://codepen.io/joostf/pen/VKyPxk*/
+form[action="#home"]:valid button {
+    transition: .3s;
+    background-color: #2ecc71;
+	box-shadow: 0px 6px 0px #16a085;
+}
+form[action="#home"]:valid button:active {
+    background-color: #16a085;
+}
+
 form[method="post"] input:valid {
     box-shadow:  0 0.1em honeydew;
 }
@@ -424,8 +343,9 @@ form[method="post"] input:invalid {
     background: url(../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
     text-indent: 200%;
     white-space: nowrap;
+    overflow: hidden;
     animation: loader 1s infinite steps(8);
-    transform: scale(0.10);
+    transform: scale(0.25);
 }
 @keyframes loader {
     to {
@@ -437,18 +357,6 @@ form[method="post"] input:invalid {
     height: 0;
     overflow: hidden;
     opacity: 0;
-}
-
-:target {
-    transition: 3s;
-    opacity: 1;
-}
-
-.offscreen {
-    bottom: -34em;
-    width: 8em;
-    overflow: hidden;
-    opacity: 0.5;
 }
 
 /*--------- login --------------*/
@@ -471,8 +379,10 @@ input[type="checkbox"]:checked + label::before {
     content: "\2713";
     background: #D7DBCB;
 }
-input[type="checkbox"]:focus + label::before {
+input[type="checkbox"]:focus + label::before,
+input[type="checkbox"]:hover + label::before{
     border:0.1em solid #EF3B3A;
+    cursor: pointer;
 }
 
 input:-webkit-autofill{
@@ -559,3 +469,218 @@ nav ol{
     display: flex;
     justify-content: space-between;
 }
+
+/*--------- Chat --------------*/
+aside {
+    transition: 0.5s;
+    width: 100vw;
+    height: 90vh;
+    background: white;
+    box-shadow: 0 0 0.5em #ccc;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding-bottom: 1em;
+}
+
+.offscreen {
+    bottom: -30em;
+    width: 9em;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+@media (min-width: 30em) {
+    aside {
+        width: 30em
+    }
+
+    .offscreen {
+        bottom: -40em;
+        width: 9em;
+        overflow: hidden;
+        opacity: 0.5;
+    }
+}
+aside p {
+    font-size: 1em;
+}
+aside span {
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    color: #EF3B3A;
+    padding: 1em;
+    justify-content: center;
+    background-image:
+        linear-gradient(90deg, honeydew 17px, transparent 0),
+        linear-gradient(90deg, #F3F9D2 23px, transparent 0),
+        linear-gradient(90deg, white 41px, transparent 0);
+    background-size: 41px 100%, 61px 100%, 83px 100%;
+}
+aside span:hover {
+    background-color: rgb(215, 219, 203);
+    cursor: pointer;
+}
+
+aside.offscreen span::after {
+    content: " \25B2";
+}
+aside span::after {
+    content: " \25BC";
+}
+aside:hover {
+    opacity: 1;
+}
+
+aside form[method="post"] {
+    display: flex;
+    padding: 1em;
+    box-shadow: 0 -0.1em 0.5em #e3e3e3;
+}
+aside form label {
+    position: absolute;
+    left: -999;
+}
+
+aside ol {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    margin: 0;
+    height: 80%;
+    overflow: scroll;
+}
+@media (min-width: 30em) {
+    aside ol{
+        height: 85%;
+    }
+}
+
+aside ol li {
+    min-width: 100%;
+    margin-bottom: 1em
+}
+aside ol li > p {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-align: left;
+    margin: 0;
+    box-shadow: 0 0 .05em grey;
+    background-color: rgb(215, 219, 203);
+}
+
+aside ol li:nth-of-type(odd) {
+    text-align: right;
+}
+aside ol li:nth-of-type(even) p{
+    border-radius: 0 2em 2em 2em;
+}
+aside ol li:nth-of-type(odd) p{
+    border-radius: 1em 1em 0 1em;
+}
+aside ol li:nth-of-type(odd) p[data-status="READ"]{
+    color: #84DCC6;
+}
+aside footer{
+    font-size: .7em;
+}
+
+aside footer p {
+    margin: 0.1em 0;
+}
+
+aside footer time{
+    color: #84DCC6;
+
+}
+
+ol ~ form {
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: none
+}
+
+ol ~ form textarea {
+    border: none;
+    resize: none;
+    position: relative;
+}
+
+ol ~ form label[for="field-message"] {
+    position: absolute;
+    z-index: 2;
+    bottom: 1.5em;
+    color: #999;
+}
+
+aside textarea:focus + label {
+    font-size: 0.01em;
+    color: #EF3B3A;
+}
+aside textarea:hover + label {
+    color: #EF3B3A;
+}
+
+/*--------- Nav --------------*/
+nav {
+    flex-direction: column;
+    justify-content: center;
+    min-width: 100%;
+    align-self: flex-start;
+}
+
+nav h1 {
+    text-align: center;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+nav ul a {
+    padding: 0.5em 1em;
+}
+
+nav ul li:first-child:nth-last-child(n+1),
+nav ul li:first-child:nth-last-child(n+1) ~ li{
+    border: 0.1em solid white;
+    transition: 0.3s;
+}
+
+nav ul li.active > a {
+    border:  0.1em solid #84DCC6;
+    border-radius: 0.5em;
+    background-color: #84DCC6;
+    color: white;
+
+}
+
+nav ul > li ul {
+    display: none;
+}
+
+nav ul > li ul li {
+    padding: 1em;
+}
+
+
+nav ul > li:hover ul,
+nav ul > li.active ul {
+    display: block;
+    border-radius: 0.5em;
+    position: absolute;
+    top: 1.6em;
+    background-color: white;
+    box-shadow: 0 0 0.1em grey;
+    background-color: white;
+    padding: 1em;
+    transition-delay: 3s;
+    z-index: 999;
+}
+
+/*--------- Nav --------------*/
