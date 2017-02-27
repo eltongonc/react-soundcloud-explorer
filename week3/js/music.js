@@ -1,4 +1,4 @@
-(function(global){
+(function(){
     'use strict';
 
     //SOUNDCLOUD_API
@@ -18,7 +18,7 @@
     };
 
     // data storage object
-    let data = {
+    const DATA = {
         call: function(url, htmlInput, htmlOutput){
             // source: https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest && Joost
             let req = new XMLHttpRequest();
@@ -28,7 +28,7 @@
                     // turns de response in a object
                     let response = JSON.parse(req.responseText);
                     // save the current data in the localStorage
-                    data.save(response);
+                    DATA.save(response);
                     // create html
                     sections.createContent(response, htmlInput, htmlOutput);
                     // Adds a spinner everytime a call is made
@@ -49,15 +49,29 @@
     };
 
     // All options needed for the app
-    let helpers = {
+    const helpers = {
         dialog: document.querySelector('dialog'),
         main: document.querySelector('main'),
         pages: document.querySelectorAll('main > section'),
-        // dataHandler(data) {
-        //
-        // },
         spinner: {
             add() {
+                helpers.dialog.setAttribute('open', '');
+                helpers.main.classList.add('de-emphasized');
+            },
+            remove() {
+                if (helpers.dialog.close) {
+                    helpers.dialog.close();
+                }
+                else {
+                    helpers.dialog.removeAttribute('open');
+                }
+                helpers.main.classList.remove('de-emphasized');
+            }
+        },
+        alert: {
+            add(message) {
+                helpers.dialog.className = "alert";
+                helpers.dialog.innerHTML = message + "<footer><button>OK</button></footer>";
                 helpers.dialog.setAttribute('open', '');
                 helpers.main.classList.add('de-emphasized');
             },
@@ -86,9 +100,9 @@
         }())
     };
 
-    // Function to generate the app and
-    let app = {
-        init: function(){
+    // Function to generate the app
+    const app = {
+        init(){
             // enable the chat module
             let chat = document.querySelector('aside span');
             chat.addEventListener("click", function(){
@@ -100,8 +114,8 @@
     };
 
     // Function to generate the routes
-    let routes = {
-        init: function(){
+    const routes = {
+        init(){
             // this.hashChange();
             sections.toggle();
 
@@ -122,7 +136,7 @@
     };
 
     // handles the sections
-    let sections = {
+    const sections = {
         // function that hides all sections and shows one.
         toggle: function(response){
             let initRoute = new Promise(function(resolve, reject) {
@@ -142,9 +156,11 @@
                     result.correspondingPage(result.path);
                     document.querySelector(result.route).classList.remove("hidden");
                 }else {
-                    console.log(helpers.dialog);
-                    console.log(result.message);
-                    location.hash = result.route;
+                    // console.log(helpers.dialog);
+                    helpers.alert.add(result.message);
+                    // console.log(result.message);
+
+                    // location.hash = result.route;
                 }
 
                 return result.route;
@@ -152,7 +168,7 @@
 
         },
         // this method return a object with a rout+info
-        checkExistingRoute: function(hash) {
+        checkExistingRoute(hash) {
             // checks if the hash has an path: "#player/songTitle"
             let simpleHash = hash.split("/");
             let replacedHash = simpleHash[0].replace("#","");
@@ -181,10 +197,10 @@
             }
             return response;
         },
-        createContent: function(data, htmlInput, htmlOutput){
+        createContent(data, htmlInput, htmlOutput){
             // Handlebars selection
-            self.source = document.querySelector(htmlInput).innerHTML;
-            let template = Handlebars.compile(self.source);
+            let source = document.querySelector(htmlInput).innerHTML;
+            let template = Handlebars.compile(source);
             let context = data.map((item)=>{
                 return {
                     pageTitle: "Title",
@@ -227,14 +243,14 @@
                 let form = document.querySelector('form[action="#search"]');
                 // search input
                 form.addEventListener("submit", function(e){
-                    // Stops the form from loading a page
+                    // Stops the from loading a page
                     e.preventDefault();
                     // Adds a loadings spinner
                     helpers.spinner.add();
                     // Uses userinput as querie
                     SOUNDCLOUD_API.search = this.children[0].value;
                     // Makes ajax call
-                    data.call(SOUNDCLOUD_API.url(), "#entry-template",'#content');
+                    DATA.call(SOUNDCLOUD_API.url(), "#entry-template",'#content');
                 });
 
                 let homeData = localStorage.getItem("user");
@@ -255,4 +271,4 @@
     // Start the app
     app.init();
 
-})(this);
+})();

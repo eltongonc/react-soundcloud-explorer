@@ -337,15 +337,36 @@ form[method="post"] input:valid {
 form[method="post"] input:invalid {
     box-shadow:  0 0.1em #EF3B3A;
 }
+
+/*dialog*/
 .loader {
     width: 512px;
     height: 512px;
     background: url(../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
     text-indent: 200%;
     white-space: nowrap;
-    overflow: hidden;
     animation: loader 1s infinite steps(8);
-    transform: scale(0.25);
+    transform: scale(0.20);
+}
+
+.alert{
+    background: white;
+    width: 200px;
+    height: 200px;
+    color: #EF3B3A;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.alert::before {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
 }
 @keyframes loader {
     to {
