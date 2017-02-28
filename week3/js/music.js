@@ -69,13 +69,17 @@
             }
         },
         alert: {
-            add(message) {
+            add(result) {
                 helpers.dialog.className = "alert";
-                helpers.dialog.innerHTML = message + "<footer><button>OK</button></footer>";
+                helpers.dialog.innerHTML = result.message + "<footer><button>OK</button></footer>";
                 helpers.dialog.setAttribute('open', '');
                 helpers.main.classList.add('de-emphasized');
+
+                document.querySelector('.alert button').addEventListener("click", function(){
+                    helpers.alert.remove(result);
+                });
             },
-            remove() {
+            remove(result) {
                 if (helpers.dialog.close) {
                     helpers.dialog.close();
                 }
@@ -83,6 +87,7 @@
                     helpers.dialog.removeAttribute('open');
                 }
                 helpers.main.classList.remove('de-emphasized');
+                location.hash = result.route;
             }
         },
         fancyLables: (function(){
@@ -103,11 +108,6 @@
     // Function to generate the app
     const app = {
         init(){
-            // enable the chat module
-            let chat = document.querySelector('aside span');
-            chat.addEventListener("click", function(){
-                this.parentNode.classList.toggle("offscreen");
-            });
             // generate routes
             routes.init();
         }
@@ -157,10 +157,8 @@
                     document.querySelector(result.route).classList.remove("hidden");
                 }else {
                     // console.log(helpers.dialog);
-                    helpers.alert.add(result.message);
+                    helpers.alert.add(result);
                     // console.log(result.message);
-
-                    // location.hash = result.route;
                 }
 
                 return result.route;
@@ -198,6 +196,7 @@
             return response;
         },
         createContent(data, htmlInput, htmlOutput){
+            console.log(data);
             // Handlebars selection
             let source = document.querySelector(htmlInput).innerHTML;
             let template = Handlebars.compile(source);
@@ -240,6 +239,12 @@
             },
             // Routes for home
             home: function(){
+                // enable the chat module
+                let chat = document.querySelector('aside span');
+                chat.addEventListener("click", function(){
+                    this.parentNode.classList.toggle("offscreen");
+                });
+
                 let form = document.querySelector('form[action="#search"]');
                 // search input
                 form.addEventListener("submit", function(e){

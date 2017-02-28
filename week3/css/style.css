@@ -88,6 +88,8 @@ svg {
 
 
 form:not([action="#"]) {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
     align-self: center;
@@ -153,7 +155,7 @@ section {
     flex-direction: column;
 }
 
-.search + section {
+form + section {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -165,13 +167,40 @@ h3 {
 }
 
 
-article {
-    width: 20em;
-    /*max-width: 30em;*/
-    position: relative;
+article h1 {
+    margin: 0;
+    margin-bottom: 1em;
+    word-wrap: break-word;
+}
+article footer {
+    margin: 0;
+	padding-top: 1em;
+    font-size: 0.9em;
+    display: flex;
+    flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 0.1em solid #ccc;
 }
 
-#home article a::after {
+article footer a:first-child{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+/*home articles*/
+form + section article {
+    width: 20em;
+    position: relative;
+}
+form + section article:hover,
+form + section article:focus {
+    -webkit-filter: sepia() saturate(4) hue-rotate(300deg);
+    -o-filter: sepia() saturate(4) hue-rotate(300deg);
+    filter: sepia() saturate(4) hue-rotate(300deg);
+}
+
+form + section article a::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -180,38 +209,73 @@ article {
     content: '';
 }
 
-article img {
+form + section article img {
     float: left;
     margin-right: 1em;
-}
-
-article img {
     max-width: 5em;
 }
+/*player articles*/
+.player > article {
+    min-width: 90vw;
+    display: flex;
+    flex-direction: column;
+}
 
-article h1 {
-    margin: 0;
-    margin-bottom: 1em;
+@media (max-width:30em) {
+    .player > article {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .player > article h1,
+    figcaption {
+        padding: 1em;
+        box-sizing: border-box;
+    }
+
+}
+
+.player > article p{
+    max-width: 30em;
     word-wrap: break-word;
 }
-article footer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 2em;
-    font-size: 0.9em
-}
-article footer a{
-    min-width: 100%
-}
+
+
 figure {
     margin: 0;
+    order: -1;
+    min-width: 100%;
+    min-height: 40vh;
+    max-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+figure div {
+    filter: blur(23px) brightness(0.8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    align-self: center;
 }
 
-iframe,
-iframe + article {
-    min-width: 90vw;
-    align-content: center;
+figure img {
+    z-index: 1;
+    box-shadow: 0 0 5em -0.8em #fff;
+    transform: scale(1.2);
+    max-width: 8em;
+    background: #fff;
+    border-radius: 50%;
 }
 
 label,
@@ -313,12 +377,8 @@ a span {
 
 a:focus,
 a:not([role="button"]):hover {
-    border-bottom: 0.1em solid #EF3B3A;
     color: #EF3B3A;
 }
-
-
-
 
 /*===== Helpers =====*/
 /*src: https://codepen.io/joostf/pen/VKyPxk*/
@@ -415,17 +475,17 @@ fieldset {
     border: 0;
     margin: 4em 0;
     padding: 0;
-
 }
-
-fieldset div {
-    display: flex;
+fieldset legend {
+    margin-bottom: 0.5em;
 }
-
 
 fieldset input[type="radio"] {
     opacity: 0;
+    position: absolute;
+    left: 9999999
 }
+
 fieldset input[type="radio"] + label{
     transition: .3s;
     color:  #EF3B3A;
@@ -436,6 +496,7 @@ fieldset input[type="radio"] + label{
     margin-right: 2em;
     cursor: pointer;
     text-align: center;
+    justify-content: center;
 }
 
 
@@ -443,20 +504,33 @@ fieldset svg {
     height: 2em;
     width: 100%;
     max-width: 2em;
-    margin: 0;
+    margin: auto;
     border: 0.1em solid rgb(215, 219, 203);
     padding: .2em;
     border-radius: 0.3em;
 }
 
+fieldset input[type="radio"]:hover + label,
+fieldset input[type="radio"]:focus + label,
+:focus {
+	-webkit-filter: drop-shadow(0 0 0.5em #EF3B3A) !important;
+	drop-shadow(0 0 0.5em #EF3B3A)!important;
+}
+
+
 fieldset label:hover svg > circle,
+fieldset input[type="radio"]:hover + label svg > circle,
+fieldset input[type="radio"]:focus + label svg > circle,
 fieldset label:hover svg > path,
+fieldset input[type="radio"]:hover + label svg > path,
+fieldset input[type="radio"]:focus + label svg > path,
 fieldset input[type="radio"]:checked + label svg > circle,
 fieldset input[type="radio"]:checked + label svg > path {
     transition: 1s;
     r: 100;
     border-radius: 0.3em;
     transform: scale(2);
+    box-shadow: 0 0 1em;
 }
 
 fieldset input[type="radio"]:checked + label svg {
@@ -664,21 +738,17 @@ nav ul {
     position: relative;
 }
 nav ul a {
-    padding: 0.5em 1em;
+    padding: 0.5em 0;
 }
 
-nav ul li:first-child:nth-last-child(n+1),
-nav ul li:first-child:nth-last-child(n+1) ~ li{
-    border: 0.1em solid white;
+nav > ul > li:first-child:nth-last-child(3),
+nav > ul > li:first-child:nth-last-child(3) ~ li {
     transition: 0.3s;
+	margin-right: 1em;
 }
 
-nav ul li.active > a {
-    border:  0.1em solid #84DCC6;
-    border-radius: 0.5em;
-    background-color: #84DCC6;
-    color: white;
-
+nav > ul > li:nth-child(2)::after{
+    content: " \25BC";
 }
 
 nav ul > li ul {
@@ -691,7 +761,7 @@ nav ul > li ul li {
 
 
 nav ul > li:hover ul,
-nav ul > li.active ul {
+nav ul > li:focus ul {
     display: block;
     border-radius: 0.5em;
     position: absolute;
