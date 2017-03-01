@@ -67,24 +67,26 @@
         <section id="player"></section>
         <!-- Register page -->
         <section id="register">
-            <nav>
-                <h1>Lost password</h1>
-                <progress value="0.25" max="1">25%</progress>
-                <ol>
-                    <li>
-                        <a href="/cart">Cart</a>
-                    </li>
-                    <li>
-                        <a href="#main-content" aria-label="Address, current step">Address</a>
-                    </li>
-                    <li>
-                        Payment
-                    </li>
-                    <li>
-                        Confirm
-                    </li>
-                </ol>
-            </nav>
+            <section class="player">
+                <nav>
+                    <h1>Lost password</h1>
+                    <progress value="0.25" max="1">25%</progress>
+                    <ol>
+                        <li>
+                            <a href="/cart">Cart</a>
+                        </li>
+                        <li>
+                            <a href="#main-content" aria-label="Address, current step">Address</a>
+                        </li>
+                        <li>
+                            Payment
+                        </li>
+                        <li>
+                            Confirm
+                        </li>
+                    </ol>
+                </nav>
+            </section>
         </section>
         <!-- Chat -->
         <aside class="offscreen">
@@ -146,7 +148,7 @@
     <script id="entry-template" type="text/x-handlebars-template">
         {{#each this}}
             <article>
-                <h1><a href="#player/{{path}}">{{title}}</a></h1>
+                <h1><a id="{{id}}" href="#player/{{path}}">{{title}}</a></h1>
                 <img src="{{img}}" alt="{{title}}" />
                 <p>Genre: {{genre}}</p>
                 <p value="likes">{{{likes}}}</p>

@@ -3,7 +3,7 @@
 
     //SOUNDCLOUD_API
     const SOUNDCLOUD_API = {
-        clientId: '',
+        clientId: 'E9bvER0kSJUJFDHCllZ3IL5h18C7QICR',
         search: 'afro',
         limit: '60',
         url: function(songId){
@@ -18,7 +18,7 @@
     };
 
     // data storage object
-    const DATA = {
+    const SONGS = {
         call: function(url, htmlInput, htmlOutput){
             // source: https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest && Joost
             let req = new XMLHttpRequest();
@@ -28,7 +28,7 @@
                     // turns de response in a object
                     let response = JSON.parse(req.responseText);
                     // save the current data in the localStorage
-                    DATA.save(response);
+                    SONGS.save(response);
                     // create html
                     sections.createContent(response, htmlInput, htmlOutput);
                     // Adds a spinner everytime a call is made
@@ -45,6 +45,9 @@
             // set the searched data to the global object
             localStorage.setItem("data", JSON.stringify(data));
             return data;
+        },
+        getSingle(songId){
+            console.log(songId);
         }
     };
 
@@ -116,6 +119,12 @@
     // Function to generate the routes
     const routes = {
         init(){
+            // enable the chat module
+            let chat = document.querySelector('aside span');
+            chat.addEventListener("click", function(){
+                this.parentNode.classList.toggle("offscreen");
+            });
+
             // this.hashChange();
             sections.toggle();
 
@@ -187,7 +196,7 @@
                 // match the hash to the of the pageFunctions
                 response.correspondingPage = sections.show[replacedHash];
                 response.path = simpleHash[1];
-                simpleHash[1] ? localStorage.setItem("path", simpleHash[1]) : null
+                simpleHash[1] ? localStorage.setItem("title", simpleHash[1]) : null;
             }else {
                 response.message = `Route ${replacedHash} does not exist. You will be redirected to login`;
                 response.route = "#login";
@@ -239,12 +248,6 @@
             },
             // Routes for home
             home: function(){
-                // enable the chat module
-                let chat = document.querySelector('aside span');
-                chat.addEventListener("click", function(){
-                    this.parentNode.classList.toggle("offscreen");
-                });
-
                 let form = document.querySelector('form[action="#search"]');
                 // search input
                 form.addEventListener("submit", function(e){
@@ -255,20 +258,35 @@
                     // Uses userinput as querie
                     SOUNDCLOUD_API.search = this.children[0].value;
                     // Makes ajax call
-                    DATA.call(SOUNDCLOUD_API.url(), "#entry-template",'#content');
+                    SONGS.call(SOUNDCLOUD_API.url(), "#entry-template",'#content');
+                });
+
+                // Set the id of a song to the localStorage when it is clicked
+                var songLink = document.querySelector('#content');
+                songLink.addEventListener("click", function(e){
+                    localStorage.setItem('id', e.target.id);
                 });
 
                 let homeData = localStorage.getItem("user");
                 // sections.createContent(homeData)
             },
             // Routes for searched content
-            player: function(name){
+            player: function(){
                 let data = JSON.parse(localStorage.getItem('data'));
                 // filters the
                 let filteredData = data.filter(function(item){
-                    return item.permalink == (name || localStorage.getItem("path"));
+                    return item.id == localStorage.getItem('id');
                 });
                 sections.createContent(filteredData, "#player-template", "#player");
+            },
+            // Routes for searched content
+            register: function(name){
+                // let data = JSON.parse(localStorage.getItem('data'));
+                // // filters the
+                // let filteredData = data.filter(function(item){
+                //     return item.permalink == (name || localStorage.getItem("path"));
+                // });
+                // sections.createContent(filteredData, "#player-template", "#player");
             }
         }
     };
