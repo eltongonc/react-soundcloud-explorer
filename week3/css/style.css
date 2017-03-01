@@ -1,10 +1,10 @@
+/*Fancy amp did not work with google fonts*/
 @font-face {
     font-family: Amps;
-    src:local('Arial'),
-        local('Helvetica'),
-        local('Verdana');
+    src: local('Verdana');
     unicode-range: U+26;
 }
+
 
 body {
     font-weight: 300;
@@ -78,7 +78,7 @@ textarea:focus {
 
 a {
     text-decoration: none;
-    font-family: Amps, 'Montserrat', sans-serif;
+    font-family: Baloo, 'Montserrat', sans-serif;
 }
 
 img,
@@ -183,6 +183,8 @@ article footer a:first-child{
 form + section article {
     width: 20em;
     position: relative;
+    /*src: */
+    background: linear-gradient(-135deg, transparent 1em, #ffffff 0);
 }
 form + section article:hover,
 form + section article:focus {
@@ -231,6 +233,7 @@ form + section article img {
 .player > article p{
     max-width: 30em;
     word-wrap: break-word;
+    margin: 2em auto;
 }
 
 
@@ -297,7 +300,8 @@ header {
 }
 article {
     background-color: white;
-    box-shadow: 0 0.1em 1em #ccc;
+	-webkit-filter: drop-shadow(0 0 0.5em #bbb);
+	drop-shadow(0 0 0.5em #bbb);
 }
 
 article h1 {
@@ -431,6 +435,34 @@ form[method="post"] input:invalid {
     opacity: 0;
 }
 
+/*--------- logo --------------*/
+header svg {
+    background: #EF3B3A;
+    border-radius: 50%;
+    transform: rotate(90deg);
+    width: 60px;
+    height: 60px
+}
+
+header circle {
+    cx: 30;
+    cy: 30;
+}
+header svg circle:first-child {
+    stroke-dasharray: 7 110;
+    stroke: #fff;
+    stroke-width: 1.4em;
+    r: 32;
+
+}
+header svg circle:nth-child(2) {
+    fill: white;
+    r: 10;
+}
+header svg circle:last-child {
+    fill: black;
+    r: 2;
+}
 /*--------- login --------------*/
 input[type="checkbox"] {
     opacity: 0;
@@ -484,7 +516,7 @@ fieldset input[type="radio"] + label{
     flex-direction: column-reverse;
     position: relative;
     float: left;
-    margin-right: 2em;
+    margin-right: 1.2em;
     cursor: pointer;
     text-align: center;
     justify-content: center;
@@ -504,8 +536,8 @@ fieldset svg {
 fieldset input[type="radio"]:hover + label,
 fieldset input[type="radio"]:focus + label,
 :focus {
-	-webkit-filter: drop-shadow(0 0 0.5em #EF3B3A) !important;
-	drop-shadow(0 0 0.5em #EF3B3A)!important;
+	-webkit-filter: drop-shadow(0 0 0.5em #EF3B3A);
+	drop-shadow(0 0 0.5em #EF3B3A);
 }
 
 
@@ -542,7 +574,7 @@ aside {
 }
 
 .offscreen {
-    bottom: -30em;
+    bottom: -35em;
     width: 9em;
     overflow: hidden;
     opacity: 0.5;
@@ -554,7 +586,7 @@ aside {
     }
 
     .offscreen {
-        bottom: -40em;
+        bottom: -43em;
         width: 9em;
         overflow: hidden;
         opacity: 0.5;
@@ -567,7 +599,7 @@ aside span {
     transition: 0.3s;
     cursor: pointer;
     display: flex;
-    color: #EF3B3A;
+    color: #333;
     padding: 1em;
     justify-content: center;
     background-image:
@@ -577,8 +609,8 @@ aside span {
     background-size: 41px 100%, 61px 100%, 83px 100%;
 }
 aside span:hover {
-    background-color: rgb(215, 219, 203);
     cursor: pointer;
+    color: #EF3B3A;
 }
 
 aside.offscreen span::after {

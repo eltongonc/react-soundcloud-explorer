@@ -3,8 +3,8 @@
 
     //SOUNDCLOUD_API
     const SOUNDCLOUD_API = {
-        clientId: 'E9bvER0kSJUJFDHCllZ3IL5h18C7QICR',
-        search: 'afro',
+        clientId: '',
+        search: 'random',
         limit: '60',
         url: function(songId){
             // More info: https://developers.soundcloud.com/docs/api/reference#tracks
@@ -19,7 +19,7 @@
 
     // data storage object
     const SONGS = {
-        call: function(url, htmlInput, htmlOutput){
+        getList: function(url, htmlInput, htmlOutput){
             // source: https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest && Joost
             let req = new XMLHttpRequest();
             req.open("GET", url, true);
@@ -45,9 +45,6 @@
             // set the searched data to the global object
             localStorage.setItem("data", JSON.stringify(data));
             return data;
-        },
-        getSingle(songId){
-            console.log(songId);
         }
     };
 
@@ -75,6 +72,7 @@
             add(result) {
                 helpers.dialog.className = "alert";
                 helpers.dialog.innerHTML = result.message + "<footer><button>OK</button></footer>";
+
                 helpers.dialog.setAttribute('open', '');
                 helpers.main.classList.add('de-emphasized');
 
@@ -85,11 +83,12 @@
             remove(result) {
                 if (helpers.dialog.close) {
                     helpers.dialog.close();
-                }
-                else {
+                }else {
                     helpers.dialog.removeAttribute('open');
                 }
                 helpers.main.classList.remove('de-emphasized');
+
+                // stets the route to a given route
                 location.hash = result.route;
             }
         },
@@ -135,7 +134,7 @@
                 // sets a spinner
                 helpers.spinner.add();
                 // gets a list of data and creates the html element for it
-                SOUNDCLOUD_API.call(SOUNDCLOUD_API.url(), "#entry-template",'#content');
+                SONGS.getList(SOUNDCLOUD_API.url(), "#entry-template",'#content');
             }
         },
         // change the route
@@ -169,7 +168,6 @@
                     helpers.alert.add(result);
                     // console.log(result.message);
                 }
-
                 return result.route;
             });
 
@@ -258,7 +256,7 @@
                     // Uses userinput as querie
                     SOUNDCLOUD_API.search = this.children[0].value;
                     // Makes ajax call
-                    SONGS.call(SOUNDCLOUD_API.url(), "#entry-template",'#content');
+                    SONGS.getList(SOUNDCLOUD_API.url(), "#entry-template",'#content');
                 });
 
                 // Set the id of a song to the localStorage when it is clicked
