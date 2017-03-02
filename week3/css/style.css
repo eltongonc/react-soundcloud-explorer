@@ -133,11 +133,9 @@ header nav {
 nav h1 {
     margin-left: 1em;
 }
-nav ul {
-    display: flex;
-    justify-content: space-around;
-    flex-grow: 1;
+nav > ul {
     flex-wrap: wrap;
+    min-width: 100%;
 }
 
 section {
@@ -430,9 +428,7 @@ form[method="post"] input:invalid {
 }
 
 .hidden {
-    height: 0;
-    overflow: hidden;
-    opacity: 0;
+    display: none;
 }
 
 /*--------- logo --------------*/
@@ -448,18 +444,24 @@ header circle {
     cx: 30;
     cy: 30;
 }
-header svg circle:first-child {
-    stroke-dasharray: 7 110;
+header circle:first-child {
+    stroke-dasharray: 18 110;
     stroke: #fff;
     stroke-width: 1.4em;
     r: 32;
 
 }
-header svg circle:nth-child(2) {
+header circle:nth-child(2) {
     fill: white;
     r: 10;
 }
-header svg circle:last-child {
+header circle:nth-child(3) {
+    r: 32;
+    fill: none;
+    stroke: black;
+    stroke-width: 10;
+}
+header circle:last-child {
     fill: black;
     r: 2;
 }
@@ -724,6 +726,19 @@ nav {
 nav h1 {
     text-align: center;
 }
+header h1 {
+    transform: scale(0.75);
+    text-transform: capitalize;
+    transition: 0.3s;
+}
+@media (min-width:32em) {
+    header h1 {
+        transform: scale(1);
+    }
+}
+header h1 a{
+    font-family: Lobster;
+}
 
 nav ul {
     margin: 0;
@@ -740,10 +755,13 @@ nav > ul > li:first-child:nth-last-child(3),
 nav > ul > li:first-child:nth-last-child(3) ~ li {
     transition: 0.3s;
 	margin-right: 1em;
+    line-height: normal;
+    vertical-align: middle;
 }
 
 nav > ul > li:nth-child(2)::after{
     content: " \25BC";
+    color: #EF3B3A;
 }
 
 nav ul > li ul {
@@ -756,7 +774,7 @@ nav ul > li ul li {
 
 
 nav ul > li:hover ul,
-nav ul > li:focus ul {
+nav ul > li a:focus + ul {
     display: block;
     border-radius: 0.5em;
     position: absolute;

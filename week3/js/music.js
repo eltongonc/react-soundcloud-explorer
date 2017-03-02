@@ -53,6 +53,7 @@
         dialog: document.querySelector('dialog'),
         main: document.querySelector('main'),
         pages: document.querySelectorAll('main > section'),
+        header: document.querySelector('header'),
         spinner: {
             add() {
                 helpers.dialog.setAttribute('open', '');
@@ -70,6 +71,7 @@
         },
         alert: {
             add(result) {
+                helpers.header.classList.add("hidden")
                 helpers.dialog.className = "alert";
                 helpers.dialog.innerHTML = result.message + "<footer><button>OK</button></footer>";
 
@@ -87,6 +89,7 @@
                     helpers.dialog.removeAttribute('open');
                 }
                 helpers.main.classList.remove('de-emphasized');
+                helpers.header.classList.remove("hidden")
 
                 // stets the route to a given route
                 location.hash = result.route;
@@ -104,6 +107,13 @@
                     }
                 });
             });
+        }()),
+        chat: (function(){
+            // enable the chat module
+            let chat = document.querySelector('aside span');
+            chat.addEventListener("click", function(){
+                this.parentNode.classList.toggle("offscreen");
+            });
         }())
     };
 
@@ -118,13 +128,7 @@
     // Function to generate the routes
     const routes = {
         init(){
-            // enable the chat module
-            let chat = document.querySelector('aside span');
-            chat.addEventListener("click", function(){
-                this.parentNode.classList.toggle("offscreen");
-            });
-
-            // this.hashChange();
+            // helpers.spinner.remove();
             sections.toggle();
 
             // Do an api call the first time an user get to the homeRoute. This happens only when it is not saved in local storage;
@@ -147,6 +151,11 @@
     const sections = {
         // function that hides all sections and shows one.
         toggle: function(response){
+            // readadd the header that is removed on login to the page
+            if(helpers.header.classList.contains("hidden")) {
+                helpers.header.classList.remove("hidden");
+            }
+
             let initRoute = new Promise(function(resolve, reject) {
                 // check current route if it exists and hides all helpers.pages
                 resolve(
@@ -196,8 +205,8 @@
                 response.path = simpleHash[1];
                 simpleHash[1] ? localStorage.setItem("title", simpleHash[1]) : null;
             }else {
-                response.message = `Route ${replacedHash} does not exist. You will be redirected to login`;
-                response.route = "#login";
+                response.message = `Route ${replacedHash} does not exist. You will be redirected to the hompage`;
+                response.route = "#explorer";
                 response.routeExist = false;
             }
             return response;
@@ -231,6 +240,8 @@
         },
         show: {
             login: function(){
+                helpers.header.classList.add("hidden")
+
                 let form = document.querySelector('form[action="#home"]');
                 form.addEventListener("submit", function(e){
                     e.preventDefault();
@@ -240,12 +251,12 @@
                     let password = document.querySelector('#field-password').value;
                     if(username && password){
                         localStorage.setItem("user", username);
-                        location.replace("#home");
+                        location.replace("#explorer");
                     }
                 });
             },
             // Routes for home
-            home: function(){
+            explorer: function(){
                 let form = document.querySelector('form[action="#search"]');
                 // search input
                 form.addEventListener("submit", function(e){
