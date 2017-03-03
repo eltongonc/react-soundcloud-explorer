@@ -57,7 +57,7 @@ Here is a link to the [web-app](http://eltongoncalves.com/minor/)
 Elton Gonçalves Gomes - checkout more work [github](https://github.com/eltongonc)
 
 
-## Acknowledgments
+<!-- ## Acknowledgments
 Hat tip to anyone who's code was used
 Inspiration
-etc
+etc -->
