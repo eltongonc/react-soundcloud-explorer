@@ -1,5 +1,9 @@
 # Soundcloud explorer: Webapp from scratch
-![logo](https://eltongonc.github.io/web_app_from_scratch/week3/img/logo.jpg)
+<p align="center">
+    <a href="http://eltongoncalves.com/minor/">
+        <img src="https://eltongonc.github.io/web_app_from_scratch/week3/img/logo.jpg" alt="Live link"/>
+    </a>
+</p>
 
 ## About the app
 Soundcloud explorer is a music search Single Page application (SPA) completely build with native Javascript. It uses the Soundcloud API to search songs and plays it on the page.
