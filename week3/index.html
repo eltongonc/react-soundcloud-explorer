@@ -20,134 +20,137 @@
 
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>
-                <a href="./">
-                    <svg><circle/><circle/><circle/><circle/></svg>
-                    Soundcloud explorer
-                </a>
-            </h1>
-            <ul>
-                <li><a href="#explorer" aria-label="Home, current page">Explore music</a></li>
-                <li >
-                    <a href="#player">Player</a>
-                    <ul>
-                        <li><a tabindex="0" href="#new_playlist">New playlist</a></li>
-                        <li><a tabindex="0" href="#history">New playlist</a></li>
-                    </ul>
-                </li>
-                <li><a href="#login">Profile</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <!-- Login page -->
-        <section id="login">
-            <!-- Login -->
-            <h2>Login</h2>
-            <form action="#home" method="post">
+    <div>
+        <header>
+            <nav>
+                <h1>
+                    <a href="./">
+                        <svg><circle/><circle/><circle/><circle/></svg>
+                        Soundcloud explorer
+                    </a>
+                </h1>
+                <ul>
+                    <li><a href="#explorer" aria-label="Home, current page">Explore music</a></li>
+                    <li >
+                        <a href="#player">Player</a>
+                        <ul>
+                            <li><a tabindex="0" href="#new_playlist">New playlist</a></li>
+                            <li><a tabindex="0" href="#history">New playlist</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#login">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <!-- Login page -->
+            <section id="login">
+                <!-- Login -->
+                <h2>Login</h2>
+                <form action="#home" method="post">
 
-                <input type="email" id="field-email" name="field-email" autocomplete="email" required autofocus>
-                <label for="field-email">Email<small>(any)</small></label>
+                    <input type="email" id="field-email" name="field-email" autocomplete="email" required autofocus>
+                    <label for="field-email">Email<small>(any)</small></label>
 
-                <input type="password" id="field-password" name="field-password" required>
-                <label for="field-password">Password<small>(any)</small></label>
+                    <input type="password" id="field-password" name="field-password" required>
+                    <label for="field-password">Password<small>(any)</small></label>
 
-                <input type="checkbox" id="field-stay-logged-in" name="field-stay-logged-in" value="stay-logged-in">
-                <label for="field-stay-logged-in">Stay logged in</label>
+                    <input type="checkbox" id="field-stay-logged-in" name="field-stay-logged-in" value="stay-logged-in">
+                    <label for="field-stay-logged-in">Stay logged in</label>
 
-                <a href="#register">Forgot password</a>
+                    <a href="#register">Forgot password</a>
 
-                <button type="submit">Login</button>
+                    <button type="submit">Login</button>
 
-            </form>
-        </section>
-        <!-- Home page -->
-        <section id="explorer">
-            <form class="search" action="#search">
-                <input type="text" id="search" name="q">
-                <label for="search">Search a song</label>
-                <button type="submit" name="button">Search</button>
-            </form>
-            <section id="content"></section>
-        </section>
-        <!-- Song page -->
-        <section id="player"></section>
-        <!-- Register page -->
-        <section id="register">
-            <section class="player">
-                <nav>
-                    <h1>Lost password</h1>
-                    <progress value="0.25" max="1">25%</progress>
-                    <ol>
-                        <li>
-                            <a href="/cart">Cart</a>
-                        </li>
-                        <li>
-                            <a href="#main-content" aria-label="Address, current step">Address</a>
-                        </li>
-                        <li>
-                            Payment
-                        </li>
-                        <li>
-                            Confirm
-                        </li>
-                    </ol>
-                </nav>
+                </form>
             </section>
-        </section>
-        <!-- Chat -->
-        <aside class="offscreen">
-            <span>Toggle chat</span>
-            <ol>
-                <li>
+            <!-- Home page -->
+            <section id="explorer">
+                <form class="search" action="#search">
+                    <input type="text" id="search" name="q">
+                    <label for="search">Search a song</label>
+                    <button type="submit" name="button">Search</button>
+                </form>
+                <section id="content"></section>
+            </section>
+            <!-- Song page -->
+            <section id="player"></section>
+            <!-- Register page -->
+            <section id="register">
+                <section class="player">
+                    <nav>
+                        <h1>Lost password</h1>
+                        <progress value="0.25" max="1">25%</progress>
+                        <ol>
+                            <li>
+                                <a href="/cart">Cart</a>
+                            </li>
+                            <li>
+                                <a href="#main-content" aria-label="Address, current step">Address</a>
+                            </li>
+                            <li>
+                                Payment
+                            </li>
+                            <li>
+                                Confirm
+                            </li>
+                        </ol>
+                    </nav>
+                </section>
+            </section>
+            <!-- Chat -->
+            <aside class="offscreen">
+                <span>Toggle chat</span>
+                <ol>
+                    <li>
 
-                    <p>
-                        Hey!
-                    </p>
+                        <p>
+                            Hey!
+                        </p>
 
-                    <footer>
-                        <p>Posted on <time datatime="2015-01-22T10:25">10:25 AM</time> by you</p>
-                        <p data-status="READ">Has been read</p>
-                    </footer>
+                        <footer>
+                            <p>Posted on <time datatime="2015-01-22T10:25">10:25 AM</time> by you</p>
+                            <p data-status="READ">Has been read</p>
+                        </footer>
 
-                </li>
-                <li>
+                    </li>
+                    <li>
 
-                    <p>
-                        Hey! Sorry I was busy
-                    </p>
+                        <p>
+                            Hey! Sorry I was busy
+                        </p>
 
-                    <footer>
-                        <p>Posted on <time datatime="2017-02-03T14:19">2:19 PM</time> by John</p>
-                    </footer>
+                        <footer>
+                            <p>Posted on <time datatime="2017-02-03T14:19">2:19 PM</time> by John</p>
+                        </footer>
 
-                </li>
-                <li>
+                    </li>
+                    <li>
 
-                    <p>
-                        I sent that 2 years ago
-                    </p>
+                        <p>
+                            I sent that 2 years ago
+                        </p>
 
-                    <footer>
-                        <p>Posted on <time datatime="2017-02-03T14:22">2:22 PM</time> by you</p>
-                        <p data-status="DELIVERED">Has been delivered</p>
-                    </footer>
+                        <footer>
+                            <p>Posted on <time datatime="2017-02-03T14:22">2:22 PM</time> by you</p>
+                            <p data-status="DELIVERED">Has been delivered</p>
+                        </footer>
 
-                </li>
-            </ol>
+                    </li>
+                </ol>
 
-            <form action="#" method="post">
+                <form action="#" method="post">
 
-                <textarea name="field-message" id="field-message"></textarea>
-                <label for="field-message">Message</label>
+                    <textarea name="field-message" id="field-message"></textarea>
+                    <label for="field-message">Message</label>
 
-                <button type="submit">Send</button>
+                    <button type="submit">Send</button>
 
-            </form>
-        </aside>
-    </main>
+                </form>
+            </aside>
+        </main>
+    </div>
+
 
     <dialog>
         <div class="loader">Loading</div>
@@ -156,7 +159,14 @@
     <!-- Handlebars generates home content -->
     <script id="entry-template" type="text/x-handlebars-template">
         {{#if this.length}}
+            <!-- <label>
+                Sort on duration
+                {{#each this}}
+                    <input type="checkbox">
+                {{/each }}
+            </label> -->
             {{#each this}}
+
                 <article>
                     <h1><a id="{{id}}" href="#player/{{path}}">{{title}}</a></h1>
                     <img src="{{img}}" alt="{{title}}" />

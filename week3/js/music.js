@@ -1,5 +1,4 @@
-(function(){
-    'use strict';
+
 
     //SOUNDCLOUD_API
     const SOUNDCLOUD_API = {
@@ -51,11 +50,13 @@
     // All options needed for the app
     const helpers = {
         dialog: document.querySelector('dialog'),
-        main: document.querySelector('main'),
+        main: document.querySelector('body > div'),
         pages: document.querySelectorAll('main > section'),
         header: document.querySelector('header'),
         spinner: {
             add() {
+                helpers.dialog.className = "loader";
+                helpers.dialog.innerHTML = "Loading";
                 helpers.dialog.setAttribute('open', '');
                 helpers.main.classList.add('de-emphasized');
             },
@@ -122,6 +123,11 @@
         init(){
             // generate routes
             routes.init();
+
+            console.log(location.hash);
+            // start at the homeRoute
+
+            location.hash = "#explorer";
         }
     };
 
@@ -167,15 +173,13 @@
                 );
             })
             .then(function(result) {
-                console.log(result);
+                self.result = result;
                 // uses the response that is returned from checkExistingRoute
                 if (result.routeExist) {
                     result.correspondingPage(result.path);
                     document.querySelector(result.route).classList.remove("hidden");
                 }else {
-                    // console.log(helpers.dialog);
                     helpers.alert.add(result);
-                    // console.log(result.message);
                 }
                 return result.route;
             });
@@ -192,7 +196,7 @@
             // if the current hash(without #) matches one of the sections push it to an array.
             // this array will allways have 1 item at the 0th position.
             helpers.pages.forEach((section)=>{
-                section.id == replacedHash ? routeArray.push(simpleHash[0]) : null
+                section.id == replacedHash ? routeArray.push(simpleHash[0]) : null;
             });
 
             // check if the previous made array contains an item and give an succes message and use the path if ther is any
@@ -205,7 +209,7 @@
                 response.path = simpleHash[1];
                 simpleHash[1] ? localStorage.setItem("title", simpleHash[1]) : null;
             }else {
-                response.message = `Route ${replacedHash} does not exist. You will be redirected to the hompage`;
+                response.message = `${replacedHash || "This route"} does not exist. You will be redirected to the homepage`;
                 response.route = "#explorer";
                 response.routeExist = false;
             }
@@ -233,9 +237,11 @@
                     userImg: item.user.avatar_url || "../img/user.svg",
                     userLink: item.user.permalink_url,
                     userName: item.user.username,
+                    duration: item.duration
 
                 };
             });
+            console.log(context);
             document.querySelector(htmlOutput).innerHTML = template(context);
         },
         show: {
@@ -269,22 +275,25 @@
                     // Makes ajax call
                     SONGS.getList(SOUNDCLOUD_API.url(), "#entry-template",'#content');
                 });
-
                 // Set the id of a song to the localStorage when it is clicked
                 var songLink = document.querySelector('#content');
                 songLink.addEventListener("click", function(e){
                     localStorage.setItem('id', e.target.id);
                 });
 
-                let homeData = localStorage.getItem("user");
-                // sections.createContent(homeData)
+
             },
             // Routes for searched content
             player: function(){
                 let data = JSON.parse(localStorage.getItem('data'));
-                // filters the
+                let filterOption = {
+                    key: "id",
+                    value: localStorage.getItem('id')
+                };
+
+                // filters the data based on the op
                 let filteredData = data.filter(function(item){
-                    return item.id == localStorage.getItem('id');
+                    return item[filterOption.key] == filterOption.value;
                 });
                 sections.createContent(filteredData, "#player-template", "#player");
             },
@@ -302,5 +311,3 @@
 
     // Start the app
     app.init();
-
-})();

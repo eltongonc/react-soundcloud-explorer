@@ -10,6 +10,22 @@ body {
     font-weight: 300;
     line-height: 1.5;
     margin: 0 auto;
+    transition: .6s filter;
+}
+.de-emphasized {
+    -webkit-filter: blur(3px) contrast(.8) brightness(0.8);
+	filter: blur(3px) contrast(.8) brightness(0.8);
+    background: rgba(100, 0, 0, 0.8);
+    pointer-events: none;
+
+    /*src: http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-css*/
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 
 h1,
@@ -18,12 +34,7 @@ h3 {
     text-transform: uppercase;
 }
 
-main {
-    transition: .6s filter;
-}
-main.de-empasized {
-    filter: blur(5px) contrast(.8) brightness(.8);
-}
+
 
 aside {
     padding: 0em;
@@ -184,12 +195,7 @@ form + section article {
     /*src: */
     background: linear-gradient(-135deg, transparent 1em, #ffffff 0);
 }
-form + section article:hover,
-form + section article:focus {
-    -webkit-filter: sepia() saturate(4) hue-rotate(300deg);
-    -o-filter: sepia() saturate(4) hue-rotate(300deg);
-    filter: sepia() saturate(4) hue-rotate(300deg);
-}
+
 
 form + section article a::after {
     position: absolute;
@@ -364,6 +370,7 @@ a,
 i {
     color: #772221
 }
+
 a span {
     text-transform: uppercase;
 }
@@ -373,28 +380,36 @@ a:not([role="button"]):hover {
     color: #EF3B3A;
 }
 
-/*===== Helpers =====*/
-/*src: https://codepen.io/joostf/pen/VKyPxk*/
-form[action="#home"]:valid button {
-    transition: .3s;
-    background-color: #2ecc71;
-	box-shadow: 0px 6px 0px #16a085;
-}
-form[action="#home"]:valid button:active {
-    background-color: #16a085;
+fieldset input:hover + label,
+fieldset input:focus + label,
+:focus {
+	-webkit-filter: drop-shadow(0 0 0.5em #EF3B3A);
+	drop-shadow(0 0 0.5em #EF3B3A);
 }
 
-form[method="post"] input:valid {
-    box-shadow:  0 0.1em honeydew;
+input[type="checkbox"]:focus + label::before,
+input[type="checkbox"]:hover + label::before{
+    border:0.1em solid #EF3B3A;
+    cursor: pointer;
 }
-form[method="post"] input:invalid {
-    box-shadow:  0 0.1em #EF3B3A;
+
+form + section article:hover,
+form + section article:focus {
+    -webkit-filter: sepia() saturate(4) hue-rotate(300deg);
+    -o-filter: sepia() saturate(4) hue-rotate(300deg);
+    filter: sepia() saturate(4) hue-rotate(300deg);
 }
+
+aside textarea:focus + label ,
+aside textarea:hover + label {
+    color: #EF3B3A;
+}
+/*===== Helpers =====*/
 
 /*dialog*/
 .loader {
-    width: 512px;
-    height: 512px;
+    width: 480px;
+    height: 480px;
     background: url(../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
     text-indent: 200%;
     white-space: nowrap;
@@ -466,6 +481,16 @@ header circle:last-child {
     r: 2;
 }
 /*--------- login --------------*/
+/*src: https://codepen.io/joostf/pen/VKyPxk*/
+form[action="#home"]:valid button {
+    transition: .3s;
+    background-color: #2ecc71;
+	box-shadow: 0px 6px 0px #16a085;
+}
+form[action="#home"]:valid button:active {
+    background-color: #16a085;
+}
+
 input[type="checkbox"] {
     opacity: 0;
 }
@@ -484,11 +509,6 @@ input[type="checkbox"] + label::before {
 input[type="checkbox"]:checked + label::before {
     content: "\2713";
     background: #D7DBCB;
-}
-input[type="checkbox"]:focus + label::before,
-input[type="checkbox"]:hover + label::before{
-    border:0.1em solid #EF3B3A;
-    cursor: pointer;
 }
 
 input:-webkit-autofill{
@@ -533,13 +553,6 @@ fieldset svg {
     border: 0.1em solid rgb(215, 219, 203);
     padding: .2em;
     border-radius: 0.3em;
-}
-
-fieldset input[type="radio"]:hover + label,
-fieldset input[type="radio"]:focus + label,
-:focus {
-	-webkit-filter: drop-shadow(0 0 0.5em #EF3B3A);
-	drop-shadow(0 0 0.5em #EF3B3A);
 }
 
 
@@ -709,10 +722,6 @@ ol ~ form label[for="field-message"] {
 
 aside textarea:focus + label {
     font-size: 0.01em;
-    color: #EF3B3A;
-}
-aside textarea:hover + label {
-    color: #EF3B3A;
 }
 
 /*--------- Nav --------------*/
