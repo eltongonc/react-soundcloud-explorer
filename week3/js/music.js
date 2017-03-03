@@ -1,4 +1,4 @@
-
+(function(){
 
     //SOUNDCLOUD_API
     const SOUNDCLOUD_API = {
@@ -7,7 +7,6 @@
         limit: '60',
         url: function(songId){
             // More info: https://developers.soundcloud.com/docs/api/reference#tracks
-            // return `https://api.soundcloud.com/resolve?url=http://soundcloud.com/search/sounds?q=trending&client_id=${this.clientId}`
             if (songId) {
                 return `https://api.soundcloud.com/tracks${songId}?client_id=${this.clientId}`;
             }else{
@@ -36,7 +35,8 @@
             };
             // Show the error if there is no connection
             req.onerror = function(err) {
-                console.log(err);
+
+                helpers.alert.add("There was an error loading the data")
             };
             req.send();
         },
@@ -74,7 +74,7 @@
             add(result) {
                 helpers.header.classList.add("hidden")
                 helpers.dialog.className = "alert";
-                helpers.dialog.innerHTML = result.message + "<footer><button>OK</button></footer>";
+                helpers.dialog.innerHTML = (result.message || result) + "<footer><button>OK</button></footer>";
 
                 helpers.dialog.setAttribute('open', '');
                 helpers.main.classList.add('de-emphasized');
@@ -93,7 +93,7 @@
                 helpers.header.classList.remove("hidden")
 
                 // stets the route to a given route
-                location.hash = result.route;
+                location.hash = result.route || "#explorer";
             }
         },
         fancyLables: (function(){
@@ -123,10 +123,6 @@
         init(){
             // generate routes
             routes.init();
-
-            console.log(location.hash);
-            // start at the homeRoute
-
             location.hash = "#explorer";
         }
     };
@@ -311,3 +307,4 @@
 
     // Start the app
     app.init();
+})()
