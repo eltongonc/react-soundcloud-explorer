@@ -2,7 +2,7 @@
 
     //SOUNDCLOUD_API
     const SOUNDCLOUD_API = {
-        clientId: '',
+        clientId: 'E9bvER0kSJUJFDHCllZ3IL5h18C7QICR',
         search: 'random',
         limit: '60',
         url: function(songId){
