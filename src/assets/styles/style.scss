@@ -1,0 +1,851 @@
+/*Fancy amp did not work with google fonts*/
+@font-face {
+    font-family: Amps;
+    src: local('Verdana');
+    unicode-range: U+26;
+}
+
+
+body {
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0 auto;
+    transition: .6s filter;
+}
+.de-emphasized {
+    -webkit-filter: blur(3px) contrast(.8) brightness(0.8);
+	filter: blur(3px) contrast(.8) brightness(0.8);
+    background: rgba(100, 0, 0, 0.8);
+    pointer-events: none;
+
+    /*src: http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-css*/
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+h1,
+h2,
+h3 {
+    text-transform: uppercase;
+}
+
+
+
+aside {
+    padding: 0em;
+    margin: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+article {
+    margin: 1em;
+    padding: 1em;
+}
+
+dialog {
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid silver;
+    border-radius: .5em;
+}
+dialog:not([open]) {
+	display: none;
+}
+
+input,
+button {
+    font-size: 1em;
+    align-self: center;
+    padding: 1em;
+    border: none;
+    cursor: pointer;
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+    font-family: Baloo, 'Montserrat', sans-serif;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+
+form:not([action="#"]) {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    min-width: 50%;
+    max-width: 50vw;
+    padding: 3em;
+}
+form input:not([type="checkbox"]) {
+    min-width: 100%;
+    padding: .5em;
+    margin-bottom: 1em;
+}
+form input[type="text"]:focus + label,
+form input[type="email"]:focus + label,
+form input[type="password"]:focus + label {
+    font-size: 0.8em;
+    bottom: 6em;
+}
+form input[type="text"]:hover + label,
+form input[type="email"]:hover + label,
+form input[type="password"]:hover + label {
+    cursor: pointer;
+}
+form label:not([for="field-stay-logged-in"]) {
+    position: relative;
+    left: 1em;
+    bottom: 2.5em;
+    transition: .3s;
+}
+form label.up {
+    bottom: 4.5em;
+}
+
+header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav h1 {
+    margin-left: 1em;
+}
+nav > ul {
+    flex-wrap: wrap;
+    min-width: 100%;
+}
+
+section {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+form + section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+h2,
+h3 {
+    text-align: center;
+}
+
+
+article h1 {
+    margin: 0;
+    margin-bottom: 1em;
+    word-wrap: break-word;
+}
+article footer {
+    margin: 0;
+	padding-top: 1em;
+    font-size: 0.9em;
+    display: flex;
+    flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 0.1em solid #ccc;
+}
+
+article footer a:first-child{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+/*home articles*/
+form + section article {
+    width: 20em;
+    position: relative;
+    /*src: */
+    background: linear-gradient(-135deg, transparent 1em, #ffffff 0);
+}
+
+
+form + section article a::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+}
+
+form + section article img {
+    float: left;
+    margin-right: 1em;
+    max-width: 5em;
+}
+/*player articles*/
+.player > article {
+    min-width: 90vw;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width:30em) {
+    .player > article {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .player > article h1,
+    figcaption {
+        padding: 1em;
+        box-sizing: border-box;
+    }
+
+}
+
+.player > article p{
+    max-width: 30em;
+    word-wrap: break-word;
+    margin: 2em auto;
+}
+
+
+figure {
+    margin: 0;
+    order: -1;
+    min-width: 100%;
+    min-height: 40vh;
+    max-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+figure div {
+    filter: blur(23px) brightness(0.8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    align-self: center;
+}
+
+figure img {
+    z-index: 1;
+    box-shadow: 0 0 5em -0.8em #fff;
+    transform: scale(1.2);
+    max-width: 8em;
+    background: #fff;
+    border-radius: 50%;
+}
+
+label,
+label + input {
+    max-width: 10em;
+}
+
+form a,
+form a + button {
+    width: 100%;
+    text-align: center;
+}
+
+
+
+/*===== Theme =====*/
+body {
+    background: url(../img/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: honeydew;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    box-shadow: 0 0.1em 1em #e3e3e3;
+    background-color: white;
+}
+article {
+    background-color: white;
+	drop-shadow: 0 0 0.5em #bbb;
+}
+
+article h1 {
+    color: #EF3B3A;
+}
+
+dialog {
+    background: rgba(0,0,0,0.3);
+}
+
+form[method="post"] {
+    background: white;
+    box-shadow: 0 0 1em  #e3e3e3;
+}
+form input:not([type="checkbox"]) {
+    box-shadow: 0 0.1em #e3e3e3
+}
+
+/*src: https://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements#post-7170*/
+button,
+input[type="submit"],
+a[role="button"] {
+    background-color: #EF3B3A;
+    color: white;
+	padding:10px;
+	position:relative;
+	color:#fff;
+	background-image: linear-gradient(bottom, rgb(100,170,30) 0%, rgb(129,212,51) 100%);
+	box-shadow: 0px 6px 0px #772221;
+	border-radius: 5px;
+}
+
+button:active,
+input[type="submit"]:active  {
+	top:7px;
+	background-image: linear-gradient(bottom, rgb(100,170,30) 100%, rgb(129,212,51) 0%);
+	box-shadow: inset 0px 1px 0px #772221, inset 0px -1px 0px #772221;
+	background: #772221;
+}
+
+
+a[role="button"]:hover,
+a[role="button"]:focus,
+input:not([type="email"]):not([type="password"]):not([type="text"]):focus,
+input:not([type="email"]):not([type="password"]):not([type="text"]):hover,
+button:focus,
+button:hover {
+    background-color: #772221;
+}
+
+
+input[type="text"]:hover + label,
+input[type="text"]:focus + label,
+input[type="email"]:hover + label,
+input[type="email"]:focus + label,
+input[type="password"]:hover + label,
+input[type="password"]:focus + label {
+    color: #EF3B3A
+}
+
+a,
+i {
+    color: #772221
+}
+
+a span {
+    text-transform: uppercase;
+}
+
+a:focus,
+a:not([role="button"]):hover {
+    color: #EF3B3A;
+}
+
+fieldset input:hover + label,
+fieldset input:focus + label,
+:focus {
+	drop-shadow: 0 0 0.5em #EF3B3A;
+}
+
+input[type="checkbox"]:focus + label::before,
+input[type="checkbox"]:hover + label::before{
+    border:0.1em solid #EF3B3A;
+    cursor: pointer;
+}
+
+form + section article:hover,
+form + section article:focus {
+    -webkit-filter: sepia() saturate(4) hue-rotate(300deg);
+    -o-filter: sepia() saturate(4) hue-rotate(300deg);
+    filter: sepia() saturate(4) hue-rotate(300deg);
+}
+
+aside textarea:focus + label ,
+aside textarea:hover + label {
+    color: #EF3B3A;
+}
+/*===== Helpers =====*/
+
+/*dialog*/
+.loader {
+    width: 480px;
+    height: 480px;
+    background: url(../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
+    text-indent: 200%;
+    white-space: nowrap;
+    animation: loader 1s infinite steps(8);
+    transform: scale(0.20);
+}
+
+.alert{
+    background: white;
+    width: 200px;
+    height: 200px;
+    color: #EF3B3A;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.alert::before {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.8);
+}
+@keyframes loader {
+    to {
+        background-position: -4048px 0
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/*--------- logo --------------*/
+header svg {
+    background: #EF3B3A;
+    border-radius: 50%;
+    transform: rotate(90deg);
+    width: 60px;
+    height: 60px
+}
+
+header circle {
+    cx: 30;
+    cy: 30;
+}
+header circle:first-child {
+    stroke-dasharray: 18 110;
+    stroke: #fff;
+    stroke-width: 1.4em;
+    r: 32;
+
+}
+header circle:nth-child(2) {
+    fill: white;
+    r: 10;
+}
+header circle:nth-child(3) {
+    r: 32;
+    fill: none;
+    stroke: black;
+    stroke-width: 10;
+}
+header circle:last-child {
+    fill: black;
+    r: 2;
+}
+/*--------- login --------------*/
+/*src: https://codepen.io/joostf/pen/VKyPxk*/
+form[action="#home"]:valid button {
+    transition: .3s;
+    background-color: #2ecc71;
+	box-shadow: 0px 6px 0px #16a085;
+}
+form[action="#home"]:valid button:active {
+    background-color: #16a085;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+}
+input[type="checkbox"] + label::before {
+    content: "\a0";
+    display: inline-block;
+    vertical-align: .2em;
+    width: .8em;
+    height: .8em;
+    background: silver;
+    margin-right: .2em;
+    text-indent: .15em;
+    line-height: .65;
+    border-radius: .1em;
+}
+input[type="checkbox"]:checked + label::before {
+    content: "\2713";
+    background: #D7DBCB;
+}
+
+input:-webkit-autofill{
+    background-color: #999
+}
+
+/*--------- rating --------------*/
+fieldset {
+    border: 0;
+    margin: 4em 0;
+    padding: 0;
+}
+fieldset legend {
+    margin-bottom: 0.5em;
+}
+
+fieldset input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    left: 9999999
+}
+
+fieldset input[type="radio"] + label{
+    transition: .3s;
+    color:  #EF3B3A;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    float: left;
+    margin-right: 1.2em;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+}
+
+
+fieldset svg {
+    height: 2em;
+    width: 100%;
+    max-width: 2em;
+    margin: auto;
+    border: 0.1em solid rgb(215, 219, 203);
+    padding: .2em;
+    border-radius: 0.3em;
+}
+
+
+fieldset label:hover svg > circle,
+fieldset input[type="radio"]:hover + label svg > circle,
+fieldset input[type="radio"]:focus + label svg > circle,
+fieldset label:hover svg > path,
+fieldset input[type="radio"]:hover + label svg > path,
+fieldset input[type="radio"]:focus + label svg > path,
+fieldset input[type="radio"]:checked + label svg > circle,
+fieldset input[type="radio"]:checked + label svg > path {
+    transition: 1s;
+    r: 100;
+    border-radius: 0.3em;
+    transform: scale(2);
+    box-shadow: 0 0 1em;
+}
+
+fieldset input[type="radio"]:checked + label svg {
+    background: rgb(215, 219, 203);
+}
+
+/*--------- Chat --------------*/
+aside {
+    transition: 0.5s;
+    width: 100vw;
+    height: 90vh;
+    background: white;
+    box-shadow: 0 0 0.5em #ccc;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding-bottom: 1em;
+}
+
+.offscreen {
+    bottom: -35em;
+    width: 9em;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+@media (min-width: 30em) {
+    aside {
+        width: 30em
+    }
+
+    .offscreen {
+        bottom: -43em;
+        width: 9em;
+        overflow: hidden;
+        opacity: 0.5;
+    }
+}
+aside p {
+    font-size: 1em;
+}
+aside span {
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    color: #333;
+    padding: 1em;
+    justify-content: center;
+    background-image:
+        linear-gradient(90deg, honeydew 17px, transparent 0),
+        linear-gradient(90deg, #F3F9D2 23px, transparent 0),
+        linear-gradient(90deg, white 41px, transparent 0);
+    background-size: 41px 100%, 61px 100%, 83px 100%;
+}
+aside span:hover {
+    cursor: pointer;
+    color: #EF3B3A;
+}
+
+aside.offscreen span::after {
+    content: " \25B2";
+}
+aside span::after {
+    content: " \25BC";
+}
+aside:hover {
+    opacity: 1;
+}
+
+aside form[method="post"] {
+    display: flex;
+    padding: 1em;
+    box-shadow: 0 -0.1em 0.5em #e3e3e3;
+}
+aside form label {
+    position: absolute;
+    left: -999;
+}
+
+aside ol {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    margin: 0;
+    height: 80%;
+    overflow: scroll;
+}
+@media (min-width: 30em) {
+    aside ol{
+        height: 85%;
+    }
+}
+
+aside ol li {
+    min-width: 100%;
+    margin-bottom: 1em
+}
+aside ol li > p {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-align: left;
+    margin: 0;
+    box-shadow: 0 0 .05em grey;
+    background-color: rgb(215, 219, 203);
+}
+
+aside ol li:nth-of-type(odd) {
+    text-align: right;
+}
+aside ol li:nth-of-type(even) p{
+    border-radius: 0 2em 2em 2em;
+}
+aside ol li:nth-of-type(odd) p{
+    border-radius: 1em 1em 0 1em;
+}
+aside ol li:nth-of-type(odd) p[data-status="READ"]{
+    color: #84DCC6;
+}
+aside footer{
+    font-size: .7em;
+}
+
+aside footer p {
+    margin: 0.1em 0;
+}
+
+aside footer time{
+    color: #84DCC6;
+
+}
+
+ol ~ form {
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: none
+}
+
+ol ~ form textarea {
+    border: none;
+    resize: none;
+    position: relative;
+}
+
+ol ~ form label[for="field-message"] {
+    position: absolute;
+    z-index: 2;
+    bottom: 1.5em;
+    color: #999;
+}
+
+aside textarea:focus + label {
+    font-size: 0.01em;
+}
+
+/*--------- Nav --------------*/
+nav {
+    flex-direction: column;
+    justify-content: center;
+    min-width: 100%;
+    align-self: flex-start;
+}
+
+nav h1 {
+    text-align: center;
+}
+header h1 {
+    transform: scale(0.75);
+    text-transform: capitalize;
+    transition: 0.3s;
+}
+@media (min-width:32em) {
+    header h1 {
+        transform: scale(1);
+    }
+}
+header h1 a{
+    font-family: Lobster;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+nav ul a {
+    padding: 0.5em 0;
+}
+
+nav > ul > li:first-child:nth-last-child(3),
+nav > ul > li:first-child:nth-last-child(3) ~ li {
+    transition: 0.3s;
+	margin-right: 1em;
+    line-height: normal;
+    vertical-align: middle;
+}
+
+nav > ul > li:nth-child(2)::after{
+    content: " \25BC";
+    color: #EF3B3A;
+}
+
+nav ul > li ul {
+    display: none;
+}
+
+nav ul > li ul li {
+    padding: 1em;
+}
+
+
+nav ul > li:hover ul,
+nav ul > li a:focus + ul {
+    display: block;
+    border-radius: 0.5em;
+    position: absolute;
+    top: 1.6em;
+    box-shadow: 0 0 0.1em grey;
+    background-color: white;
+    padding: 1em;
+    transition-delay: 3s;
+    z-index: 999;
+}
+
+/*--------- Step indicator --------------*/
+/* source: https://css-tricks.com/html5-progress-element/*/
+section nav {
+	display: flex;
+}
+
+progress {
+	-webkit-appearance: none;
+    appearance: none;
+    min-width: 80vw;
+    height: 0.5em;
+    align-self: center;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 0.1em;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #84DCC6;
+
+}
+
+nav ol{
+display: flex;
+    justify-content: space-between;
+    position: relative;
+    min-width: 90vw;
+    align-self: center;
+    margin-top: .5em;
+	/*src: http://www.kodhus.com/css-only-step-progress-bar/*/
+	counter-reset: step;
+}
+
+nav ol li {
+	margin-top: 1.2em;
+}
+nav ol li::before {
+	content: counter(step);
+	counter-increment: step;
+	vertical-align: middle;
+    border: 0.1em solid #fff;
+    padding: 1em;
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    top: -89%;
+    background: #D2DACC;
+}
+
+nav ol li:nth-child(-n+2)::before{
+	border: 0.1em solid #84DCC6;
+}
