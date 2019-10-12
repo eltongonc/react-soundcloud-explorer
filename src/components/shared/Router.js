@@ -9,21 +9,12 @@ function Router() {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path="/">
-					<Home/>
-				</Route>
-				<Route path="/explorer">
-					<Home/>
-				</Route>
-				<Route path="/player">
-					<Player/>
-				</Route>
-				<Route path="/login">
-					<Login/>
-				</Route>
-				<Route path="/register">
-					<Register/>
-				</Route>
+				<Route exact path="/" component={Home}/>
+				<Route exact path="/explorer" component={Home}/>
+				<Route exact path="/player" component={Player}/>
+				<Route exact path="/player/:id" component={Player}/>
+				<Route exact path="/login" component={Login}/>
+				<Route exact path="/register" component={Register} />
 			</Switch>
 		</BrowserRouter>
 	);

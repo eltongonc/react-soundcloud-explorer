@@ -4,7 +4,7 @@ import React from 'react';
 function PlayerItems({articles}) {
 	if (articles.length) {
 		return (
-			<section class="player">
+			<section className="player">
 				{articles.map((item, i) => (
 					<article key={i}>
 						<h1>{item.title}</h1>

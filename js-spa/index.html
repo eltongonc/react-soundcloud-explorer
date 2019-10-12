@@ -159,36 +159,37 @@
 
     <!-- Handlebars generates home content -->
     <script id="entry-template" type="text/x-handlebars-template">
-        {{#if this.length}}
-            <!-- <label>
-                Sort on duration
-                {{#each this}}
-                    <input type="checkbox">
-                {{/each }}
-            </label> -->
-            {{#each this}}
+        <section>
+            {{#if this.length}}
+                <!-- <label>
+                    Sort on duration
+                    {{#each this}}
+                        <input type="checkbox">
+                    {{/each }}
+                </label> -->
+                    {{#each this}}
 
-                <article>
-                    <h1><a id="{{id}}" href="#player/{{path}}">{{title}}</a></h1>
-                    <img src="{{img}}" alt="{{title}}" />
-                    <p>Genre: {{genre}}</p>
-                    <p value="likes">{{{likes}}}</p>
-                </article>
-            {{/each}}
-            <section>
-                <h3>Search some more</h3>
-                <form class="search" action="#search">
-                    <input type="text" id="search" name="q">
-                    <label for="search">Search a song</label>
+                        <article>
+                            <h1><a id="{{id}}" href="#player/{{path}}">{{title}}</a></h1>
+                            <img src="{{img}}" alt="{{title}}" />
+                            <p>Genre: {{genre}}</p>
+                            <p value="likes">{{{likes}}}</p>
+                        </article>
+                    {{/each}}
+                    <section>
+                        <h3>Search some more</h3>
+                        <form class="search" action="#search">
+                            <input type="text" id="search" name="q">
+                            <label for="search">Search a song</label>
 
-                </form>
-            </section>
-            {{else}}
-             <section>
-                 <h3>No song found, please try something else</h3>
-             </section>
-        {{/if}}
-    </section>
+                        </form>
+                    </section>
+                {{else}}
+                    <section>
+                        <h3>No song found, please try something else</h3>
+                    </section>
+            {{/if}}
+        </section>
     </script>
 
     <!-- handlebars generate player content -->
