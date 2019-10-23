@@ -28,7 +28,7 @@ class SOUNDCLOUD {
 		}
 	}
 
-	async getSong(id) {
+	async getSong({id, query}) {
 		try {
 			const result = await axios({
 				method: 'GET',

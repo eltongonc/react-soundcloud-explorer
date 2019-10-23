@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import PageWrapper from './PageWrapper';
+import React from 'react';
+
+import PageWrapper from '../shared/PageWrapper';
 import HomeItems from '../shared/HomeItems';
 import SOUNDCLOUD from '../shared/SoundCloud';
-import ShowMore from '../shared/ShowMore';
+import Search from '../shared/Search';
+
 const music = new SOUNDCLOUD();
 
 
@@ -11,18 +13,38 @@ class Home extends React.Component {
 		super(props);
 		this.state = {
 			data: [],
+			query: '',
 		}
 	}
 
 	async resolveData() {
 		try {
-			const data = await music.getList();
+
+			let data
+			if(localStorage.data) {
+				data = JSON.parse(localStorage.data) 
+			} else {
+				data = await music.getList();
+				localStorage.data = JSON.stringify(data);
+			}
+
 			this.setState({
 				data,
 			});
+
 		} catch(e) {
 			console.log('error at resolveData',e);
 		}
+	}
+
+	async handleSubmit(query) {
+		console.log(query);
+		
+		// const data = await music.getSong({query});
+
+		// this.setState({
+		// 	data
+		// });
 	}
 
 	componentDidMount() {
@@ -30,19 +52,17 @@ class Home extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.data);
-		
 		return (
 			<PageWrapper>
-				<section id="explorer">
-					<form className="search" action="#search">
-						<input type="text" id="search" name="q"/>
-						<label htmlFor="search">Search a song</label>
-						<button type="submit" name="button">Search</button>
-					</form>
-					<section id="content">
+				<section id="explorer" className="home">
+					<Search onSubmit={this.handleSubmit}/>
+					<section id="content" className="content">
 						<HomeItems articles={this.state.data}/>
-						<ShowMore/>
+
+						<section className="content__more">
+							<h3>Search more songs</h3>
+							<Search onSubmit={this.handleSubmit}/>
+						</section>
 					</section>
 				</section>
 			</PageWrapper>

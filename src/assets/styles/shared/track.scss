@@ -1,0 +1,56 @@
+.track {
+	background: #fff;
+	border-radius: 2px;
+	margin: 1rem;
+	padding: 1rem;
+	
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	
+	display: flex;
+	min-height: 5rem;
+	align-items: flex-start;
+
+	.track__thumb {
+		margin-right: 1rem;
+		border-radius: 100%;
+		transform: scale(.75);
+
+		-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+		filter: grayscale(100%);
+
+		transition: filter .3s ease-in-out;
+
+		&:hover {
+			-webkit-filter: none; /* Safari 6.0 - 9.0 */
+			filter: none;
+		}
+
+		&.svg {
+			min-width: 100px;
+			min-height: 100px;
+		}
+	}
+
+	.track__info {
+		align-self: stretch;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 100%;
+		width: 100%;
+
+		.track__title {
+			flex: 1;
+			font-size: 1rem;
+			a {
+				text-decoration: none;
+				color: #333;
+			}
+		}
+
+		.track__likes {
+			align-self: flex-end;
+		}
+	}
+}

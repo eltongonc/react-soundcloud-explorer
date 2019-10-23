@@ -1,0 +1,109 @@
+.header {
+    position: relative;
+
+    .logo {
+        padding-top: 1rem;
+        text-align: center;
+        transform: scale(0.75);
+        text-transform: capitalize;
+        transition: 0.3s;
+        svg {
+            background: #EF3B3A;
+            border-radius: 50%;
+            transform: rotate(90deg);
+            width: 60px;
+            height: 60px;
+            margin-right: 1rem;
+    
+            circle {
+                cx: 30;
+                cy: 30;
+    
+                &:first-child {
+                    stroke-dasharray: 18 110;
+                    stroke: #fff;
+                    stroke-width: 1.4em;
+                    r: 32;
+                }
+                &:nth-child(2) {
+                    fill: white;
+                    r: 10;
+                }
+                &:nth-child(3) {
+                    r: 32;
+                    fill: none;
+                    stroke: black;
+                    stroke-width: 10;
+                }
+                &:last-child {
+                    fill: black;
+                    r: 2;
+                }
+            }
+        }
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Lobster;
+            text-decoration: none;
+            color: #333;
+        }
+        span {
+            display: none;
+        }
+    }
+    
+    .nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 100%;
+        align-self: flex-start;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+        margin-bottom: 1rem;
+        
+        ul {
+            padding: 2rem 0;
+            li {
+                text-align: center;
+                a {
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        &.nav--open {
+            max-height: 300px;
+            opacity: 1;
+        }
+    }
+
+    .menu-button {
+        background-color: $light-grey;
+        border: none;
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        font-size: 1.5rem;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    @media (min-width:32em) {
+        .logo {
+            span {
+                display: block;
+            }
+        }
+        h1 {
+            transform: scale(1);
+        }
+    }
+}

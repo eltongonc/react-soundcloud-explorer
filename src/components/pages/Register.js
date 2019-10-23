@@ -1,5 +1,5 @@
 import React from 'react';
-import PageWrapper from './PageWrapper';
+import PageWrapper from '../shared/PageWrapper';
 
 const Register = () => (
 	<PageWrapper>

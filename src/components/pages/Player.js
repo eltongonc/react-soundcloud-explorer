@@ -1,5 +1,5 @@
 import React from 'react';
-import PageWrapper from './PageWrapper';
+import PageWrapper from '../shared/PageWrapper';
 import SOUNDCLOUD from '../shared/SoundCloud';
 const song = new SOUNDCLOUD();
 
