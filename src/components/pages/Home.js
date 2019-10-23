@@ -16,7 +16,14 @@ class Home extends React.Component {
 
 	async resolveData() {
 		try {
-			const data = await music.getList();
+
+			let data
+			if(localStorage.data) {
+				data = JSON.parse(localStorage.data) 
+			} else {
+				data = await music.getList();
+				localStorage.data = JSON.stringify(data);
+			}
 
 			this.setState({
 				data,
@@ -31,11 +38,8 @@ class Home extends React.Component {
 		e.preventDefault();
 
 		const query = this.q.value;
-
 		const data = await music.getSong({query});
 
-		console.log(data);
-		
 		this.setState({
 			data
 		});

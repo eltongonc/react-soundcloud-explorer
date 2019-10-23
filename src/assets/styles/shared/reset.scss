@@ -1,0 +1,337 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0 auto;
+    transition: .6s filter;
+    background-color: #F9F9F9;
+}
+
+.de-emphasized {
+    -webkit-filter: blur(3px) contrast(.8) brightness(0.8);
+	filter: blur(3px) contrast(.8) brightness(0.8);
+    background: rgba(100, 0, 0, 0.8);
+    pointer-events: none;
+
+    /*src: http://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting-using-css*/
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+// h1,
+// h2,
+// h3 {
+//     text-transform: uppercase;
+// }
+
+
+
+// aside {
+//     padding: 0em;
+//     margin: 0;
+// }
+
+// ul,
+// ol {
+//     list-style: none;
+//     padding: 0;
+//     margin: 0;
+// }
+
+// article {
+//     margin: 1em;
+//     padding: 1em;
+// }
+
+// dialog {
+//     position: fixed;
+//     display: flex;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     align-items: center;
+//     justify-content: center;
+//     border: 1px solid silver;
+//     border-radius: .5em;
+// }
+// dialog:not([open]) {
+// 	display: none;
+// }
+
+// input,
+// button {
+//     font-size: 1em;
+//     align-self: center;
+//     padding: 1em;
+//     border: none;
+//     cursor: pointer;
+// }
+
+// a:focus,
+// button:focus,
+// input:focus,
+// textarea:focus {
+//     outline: 0;
+// }
+
+// a {
+//     text-decoration: none;
+//     font-family: Baloo, 'Montserrat', sans-serif;
+// }
+
+// img,
+// svg {
+//     max-width: 100%;
+// }
+
+
+// form:not([action="#"]) {
+//     display: -webkit-flex;
+//     display: -ms-flexbox;
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-self: center;
+//     min-width: 50%;
+//     max-width: 50vw;
+//     padding: 3em;
+// }
+// form input:not([type="checkbox"]) {
+//     min-width: 100%;
+//     padding: .5em;
+//     margin-bottom: 1em;
+// }
+// form input[type="text"]:focus + label,
+// form input[type="email"]:focus + label,
+// form input[type="password"]:focus + label {
+//     font-size: 0.8em;
+//     bottom: 6em;
+// }
+// form input[type="text"]:hover + label,
+// form input[type="email"]:hover + label,
+// form input[type="password"]:hover + label {
+//     cursor: pointer;
+// }
+// form label:not([for="field-stay-logged-in"]) {
+//     position: relative;
+//     left: 1em;
+//     bottom: 2.5em;
+//     transition: .3s;
+// }
+// form label.up {
+//     bottom: 4.5em;
+// }
+
+// header nav {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: space-around;
+//     align-items: center;
+// }
+
+// nav h1 {
+//     margin-left: 1em;
+// }
+// nav > ul {
+//     flex-wrap: wrap;
+//     min-width: 100%;
+// }
+
+// section {
+//     display: flex;
+//     justify-content: space-around;
+//     flex-direction: column;
+// }
+
+// form + section {
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: center;
+// }
+
+// h2,
+// h3 {
+//     text-align: center;
+// }
+
+
+// article h1 {
+//     margin: 0;
+//     margin-bottom: 1em;
+//     word-wrap: break-word;
+// }
+// article footer {
+//     margin: 0;
+// 	padding-top: 1em;
+//     font-size: 0.9em;
+//     display: flex;
+//     flex-wrap: wrap;
+// 	justify-content: space-between;
+// 	align-items: center;
+// 	border-top: 0.1em solid #ccc;
+// }
+
+// article footer a:first-child{
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: center;
+// }
+// /*home articles*/
+// form + section article {
+//     width: 20em;
+//     position: relative;
+//     /*src: */
+//     background: linear-gradient(-135deg, transparent 1em, #ffffff 0);
+// }
+
+
+// form + section article a::after {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     content: '';
+// }
+
+// form + section article img {
+//     float: left;
+//     margin-right: 1em;
+//     max-width: 5em;
+// }
+// /*player articles*/
+// .player > article {
+//     min-width: 90vw;
+//     display: flex;
+//     flex-direction: column;
+// }
+
+// @media (max-width:30em) {
+//     .player > article {
+//         display: flex;
+//         flex-direction: column;
+//         margin: 0;
+//         padding: 0;
+//     }
+
+//     .player > article h1,
+//     figcaption {
+//         padding: 1em;
+//         box-sizing: border-box;
+//     }
+
+// }
+
+// .player > article p{
+//     max-width: 30em;
+//     word-wrap: break-word;
+//     margin: 2em auto;
+// }
+
+
+// figure {
+//     margin: 0;
+//     order: -1;
+//     min-width: 100%;
+//     min-height: 40vh;
+//     max-height: 50vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     margin-bottom: 1em;
+//     overflow: hidden;
+//     position: relative;
+//     box-sizing: border-box;
+// }
+// figure div {
+//     filter: blur(23px) brightness(0.8);
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     width: 100%;
+//     height: 100%;
+//     z-index: 0;
+//     background-size: cover;
+//     align-self: center;
+// }
+
+// figure img {
+//     z-index: 1;
+//     box-shadow: 0 0 5em -0.8em #fff;
+//     transform: scale(1.2);
+//     max-width: 8em;
+//     background: #fff;
+//     border-radius: 50%;
+// }
+
+// label,
+// label + input {
+//     max-width: 10em;
+// }
+
+// form a,
+// form a + button {
+//     width: 100%;
+//     text-align: center;
+// }
+
+
+// /*===== Helpers =====*/
+
+// /*dialog*/
+// .loader {
+//     width: 480px;
+//     height: 480px;
+//     background: url(../../img/loading_spinner.png);/*src: https://www.hceamericas.com/wp-content/themes/bd/assets/img/loading_spinner.gif*/
+//     text-indent: 200%;
+//     white-space: nowrap;
+//     animation: loader 1s infinite steps(8);
+//     transform: scale(0.20);
+// }
+
+// .alert{
+//     background: white;
+//     width: 200px;
+//     height: 200px;
+//     color: #EF3B3A;
+//     text-transform: uppercase;
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: flex-end;
+// }
+// .alert::before {
+//     position: fixed;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//     z-index: 999;
+//     background: rgba(0, 0, 0, 0.8);
+// }
+// @keyframes loader {
+//     to {
+//         background-position: -4048px 0
+//     }
+// }
+
+// .hidden {
+//     display: none;
+// }
