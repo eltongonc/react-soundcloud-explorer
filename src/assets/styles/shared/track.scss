@@ -26,13 +26,12 @@
 		}
 
 		&.svg {
-			min-width: 175px;
-			min-height: 175px;
+			min-width: 100px;
+			min-height: 100px;
 		}
 	}
 
 	.track__info {
-		// border: solid;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;

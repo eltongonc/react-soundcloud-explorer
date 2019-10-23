@@ -1,8 +1,10 @@
 import React from 'react';
+
 import PageWrapper from '../shared/PageWrapper';
 import HomeItems from '../shared/HomeItems';
 import SOUNDCLOUD from '../shared/SoundCloud';
-import ShowMore from '../shared/ShowMore';
+import Search from '../shared/Search';
+
 const music = new SOUNDCLOUD();
 
 
@@ -11,6 +13,7 @@ class Home extends React.Component {
 		super(props);
 		this.state = {
 			data: [],
+			query: '',
 		}
 	}
 
@@ -34,15 +37,14 @@ class Home extends React.Component {
 		}
 	}
 
-	async handleSubmit(e) {
-		e.preventDefault();
+	async handleSubmit(query) {
+		console.log(query);
+		
+		// const data = await music.getSong({query});
 
-		const query = this.q.value;
-		const data = await music.getSong({query});
-
-		this.setState({
-			data
-		});
+		// this.setState({
+		// 	data
+		// });
 	}
 
 	componentDidMount() {
@@ -52,15 +54,15 @@ class Home extends React.Component {
 	render() {
 		return (
 			<PageWrapper>
-				<section id="explorer">
-					<form className="search" onSubmit={this.handleSubmit.bind(this)} action="#search">
-						<input ref={(q) => this.q = q} type="text" id="search" name="q"/>
-						<label htmlFor="search">Search a song</label>
-						<button type="submit" name="button">Search</button>
-					</form>
-					<section id="content">
+				<section id="explorer" className="home">
+					<Search onSubmit={this.handleSubmit}/>
+					<section id="content" className="content">
 						<HomeItems articles={this.state.data}/>
-						<ShowMore/>
+
+						<section className="content__more">
+							<h3>Search more songs</h3>
+							<Search onSubmit={this.handleSubmit}/>
+						</section>
 					</section>
 				</section>
 			</PageWrapper>

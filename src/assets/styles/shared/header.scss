@@ -1,105 +1,107 @@
-/*--------- logo --------------*/
-header svg {
-    background: #EF3B3A;
-    border-radius: 50%;
-    transform: rotate(90deg);
-    width: 60px;
-    height: 60px
-}
-
-header circle {
-    cx: 30;
-    cy: 30;
-}
-header circle:first-child {
-    stroke-dasharray: 18 110;
-    stroke: #fff;
-    stroke-width: 1.4em;
-    r: 32;
-
-}
-header circle:nth-child(2) {
-    fill: white;
-    r: 10;
-}
-header circle:nth-child(3) {
-    r: 32;
-    fill: none;
-    stroke: black;
-    stroke-width: 10;
-}
-header circle:last-child {
-    fill: black;
-    r: 2;
-}
-
-/*--------- Nav --------------*/
-nav {
-    flex-direction: column;
-    justify-content: center;
-    min-width: 100%;
-    align-self: flex-start;
-}
-
-nav h1 {
-    text-align: center;
-}
-header h1 {
-    transform: scale(0.75);
-    text-transform: capitalize;
-    transition: 0.3s;
-}
-@media (min-width:32em) {
-    header h1 {
-        transform: scale(1);
-    }
-}
-header h1 a{
-    font-family: Lobster;
-}
-
-nav ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
+.header {
     position: relative;
-}
-nav ul a {
-    padding: 0.5em 0;
-}
 
-nav > ul > li:first-child:nth-last-child(3),
-nav > ul > li:first-child:nth-last-child(3) ~ li {
-    transition: 0.3s;
-	margin-right: 1em;
-    line-height: normal;
-    vertical-align: middle;
-}
+    .logo {
+        padding-top: 1rem;
+        text-align: center;
+        transform: scale(0.75);
+        text-transform: capitalize;
+        transition: 0.3s;
+        svg {
+            background: #EF3B3A;
+            border-radius: 50%;
+            transform: rotate(90deg);
+            width: 60px;
+            height: 60px;
+            margin-right: 1rem;
+    
+            circle {
+                cx: 30;
+                cy: 30;
+    
+                &:first-child {
+                    stroke-dasharray: 18 110;
+                    stroke: #fff;
+                    stroke-width: 1.4em;
+                    r: 32;
+                }
+                &:nth-child(2) {
+                    fill: white;
+                    r: 10;
+                }
+                &:nth-child(3) {
+                    r: 32;
+                    fill: none;
+                    stroke: black;
+                    stroke-width: 10;
+                }
+                &:last-child {
+                    fill: black;
+                    r: 2;
+                }
+            }
+        }
 
-nav > ul > li:nth-child(2)::after{
-    content: " \25BC";
-    color: #EF3B3A;
-}
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Lobster;
+        }
+        span {
+            display: none;
+        }
+    }
+    
+    .nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 100%;
+        align-self: flex-start;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+        margin-bottom: 1rem;
+        
+        ul {
+            padding: 2rem 0;
+            li {
+                text-align: center;
+                a {
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: bold;
+                }
+            }
+        }
 
-nav ul > li ul {
-    display: none;
-}
+        &.nav--open {
+            max-height: 300px;
+            opacity: 1;
+        }
+    }
 
-nav ul > li ul li {
-    padding: 1em;
-}
-
-
-nav ul > li:hover ul,
-nav ul > li a:focus + ul {
-    display: block;
-    border-radius: 0.5em;
-    position: absolute;
-    top: 1.6em;
-    box-shadow: 0 0 0.1em grey;
-    background-color: white;
-    padding: 1em;
-    transition-delay: 3s;
-    z-index: 999;
+    .menu-button {
+        background-color: $light-grey;
+        border: none;
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        font-size: 1.5rem;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    @media (min-width:32em) {
+        .logo {
+            span {
+                display: block;
+            }
+        }
+        h1 {
+            transform: scale(1);
+        }
+    }
 }
