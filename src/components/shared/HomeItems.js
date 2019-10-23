@@ -21,7 +21,6 @@ function HomeItems(props) {
 			userLink: item.user.permalink_url,
 			userName: item.user.username,
 			duration: item.duration
-
 		};
 	});
 	
