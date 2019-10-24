@@ -4,7 +4,7 @@ import axios from 'axios';
 class SOUNDCLOUD {
 	clientId = 'E9bvER0kSJUJFDHCllZ3IL5h18C7QICR';
 	search = 'random';
-	limit =  '59'
+	limit =  '60'
 
 	url(songId){
 		// More info: https://developers.soundcloud.com/docs/api/reference#tracks
