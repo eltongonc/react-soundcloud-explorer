@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import NoteIcon from './NoteIcon';
 
 // Player template
-function HomeItems(props) {
-	const articles = props.articles.map((item)=>{
+function Tracks(props) {
+	const trackList = props.trackList.map((item)=>{
 		return {
 			pageTitle: "Title",
 			id: item.id,
@@ -25,11 +25,11 @@ function HomeItems(props) {
 		};
 	});
 	
-	if (articles.length) {
+	if (trackList.length) {
 		return (
-			articles.map((item, i) => (
-				<Link key={i} id={item.id} to={`/player/${item.id}`}>
-					<article className="track" >
+			trackList.map((item, i) => (
+				// <Link}>
+					<article className="track" key={i} id={item.id} onClick={props.onSelectTrack.bind(this, item)}>
 						{
 							item.img ? 
 								<img className="track__thumb" src={item.img} alt={item.title} />
@@ -45,7 +45,7 @@ function HomeItems(props) {
 						</div>
 							
 					</article>
-				</Link>
+				// </Link>
 			))
 		);
 	} else {
@@ -57,4 +57,4 @@ function HomeItems(props) {
 	}
 }
 
-export default HomeItems;
+export default Tracks;
