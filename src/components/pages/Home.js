@@ -56,10 +56,10 @@ class Home extends React.Component {
 			<PageWrapper>
 				<section id="explorer" className="home">
 					<Search onSubmit={this.handleSubmit}/>
-					<section id="content" className="content">
+					<section id="content" className="tracks">
 						<HomeItems articles={this.state.data}/>
 
-						<section className="content__more">
+						<section className="tracks__more">
 							<h3>Search more songs</h3>
 							<Search onSubmit={this.handleSubmit}/>
 						</section>
