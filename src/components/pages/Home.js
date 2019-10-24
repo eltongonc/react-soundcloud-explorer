@@ -39,13 +39,22 @@ class Home extends React.Component {
 	}
 
 	async handleSubmit(query) {
-		console.log(query);
+		try {
+			const data = await music.searchSong(query);
+
+			this.setState({
+				data,
+			});
+		} catch(e) {
+			console.log('error at resolveData',e);
+		}
+
 	}
 
 	selectSong(song) {
 		console.log(song);
 		this.setState({
-			song,	
+			song,
 		})
 	}
 
@@ -86,7 +95,7 @@ class Home extends React.Component {
 		return (
 			<PageWrapper>
 				<section id="explorer" className="home">
-					<Search onSubmit={this.handleSubmit}/>
+					<Search onSubmit={(query) =>this.handleSubmit(query)}/>
 					<section id="content" className="tracks">
 						<Tracks onSelectTrack={(song) => this.selectSong(song)} trackList={this.state.data}/>
 
