@@ -11,7 +11,7 @@ class SOUNDCLOUD {
 		if (songId) {
 			return `https://api.soundcloud.com/tracks/${songId}?client_id=${this.clientId}`;
 		}else{
-			return `https://api.soundcloud.com/tracks?client_id=${this.clientId}&limit=${this.limit}&q=${this.search}`;
+			return ;
 		}
 	}
 
@@ -19,7 +19,7 @@ class SOUNDCLOUD {
 		try {
 			const result = await axios({
 				method: 'GET',
-				url: this.url(),
+				url: `https://api.soundcloud.com/tracks?client_id=${this.clientId}&limit=${this.limit}&q=${this.search}`,
 			});
 
 			return result.data
@@ -28,11 +28,11 @@ class SOUNDCLOUD {
 		}
 	}
 
-	async getSong({id, query}) {
+	async searchSong(query) {
 		try {
 			const result = await axios({
 				method: 'GET',
-				url: this.url(id),
+				url: `https://api.soundcloud.com/tracks?client_id=${this.clientId}&limit=${this.limit}&q=${query}`,
 			});
 
 			return result.data
