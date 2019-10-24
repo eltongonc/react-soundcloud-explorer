@@ -28,23 +28,24 @@ function HomeItems(props) {
 	if (articles.length) {
 		return (
 			articles.map((item, i) => (
-				<article className="track" key={i}>
-					{
-						item.img ? 
-							<img className="track__thumb" src={item.img} alt={item.title} />
-							:
-							<div className="track__thumb svg">
-								<NoteIcon/>
-							</div>
-					}
-					<div className="track__info">
-						<h2 className="track__title">
-							<Link id={item.id} to={`/player/${item.id}`}>{item.title}</Link>
-						</h2>
-						<p value="track__likes" dangerouslySetInnerHTML={{__html: item.likes}}></p>
-					</div>
-						
-				</article>
+				<Link key={i} id={item.id} to={`/player/${item.id}`}>
+					<article className="track" >
+						{
+							item.img ? 
+								<img className="track__thumb" src={item.img} alt={item.title} />
+								:
+								<div className="track__thumb svg">
+									<NoteIcon/>
+								</div>
+						}
+						<div className="track__info">
+							<h2 className="track__title">{item.title}
+							</h2>
+							<p value="track__likes" dangerouslySetInnerHTML={{__html: item.likes}}></p>
+						</div>
+							
+					</article>
+				</Link>
 			))
 		);
 	} else {
