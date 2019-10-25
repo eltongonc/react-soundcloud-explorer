@@ -58,6 +58,14 @@
 					align-self: flex-end;
 				}
 			}
+
+			&.playing {
+				background-color: #333;
+
+				.track__info {
+					color: #fff;
+				}	
+			}
 		}
 	
 

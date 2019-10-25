@@ -1,4 +1,5 @@
 import React from 'react';
+import NoteIcon from './NoteIcon';
 const SC = window.SC;
 
 // Player template
@@ -6,8 +7,6 @@ class Player extends React.Component {
 	constructor(props) {
 		super(props);
 
-		console.log(props.song.title);
-		
 		this.state = {
 			playing: props.playing,
 		}
@@ -15,10 +14,6 @@ class Player extends React.Component {
 
 	componentDidMount() {
 		this.player = SC.Widget(this.iframe);
-	}
-
-	componentDidUpdate(props) {
-		this.player.isPaused((x) => console.log(x))
 	}
 
 	togglePlayer() {
@@ -31,17 +26,39 @@ class Player extends React.Component {
 
 	render() {
 		const { props } = this;
-		
-		return (
-			<div className="player">
-				<div className="player__inner">
-					<button onClick={() => this.togglePlayer()}>
-						<span><i className={this.state.playing ? "fa fa-pause": "fa fa-play"}/></span>
-					</button>
+		console.log(SC.Widget.Events.LOAD_PROGRESS);
 
-					{
-						props.song.title &&	<h3 className="track__title">{props.song.title}</h3>
-					}
+		return (
+			<div className={ props.song.uri ? 'player' : 'player player--hidden'}>
+				<div className="player__inner">
+					<div className="player__thumb">
+						{
+							props.song.img ? 
+								<img className="track__thumb" src={props.song.img} alt={props.song.title} />
+								:
+								<div className="track__thumb svg">
+									<NoteIcon/>
+								</div>
+						}
+					</div>
+
+					<div className="player__description">
+						{
+							props.song.title &&	<h3 className="track__title">{props.song.title}</h3>
+						}
+					</div>
+
+					<div className="player__controls">
+						<button onClick={() => this.player.prev()}>
+							<span><i className="fa fa-backward"/></span>
+						</button>
+						<button onClick={() => this.togglePlayer()}>
+							<span><i className={this.state.playing ? "fa fa-pause": "fa fa-play"}/></span>
+						</button>
+						<button onClick={() => this.player.next()}>
+							<span><i className="fa fa-forward"/></span>
+						</button>
+					</div>
 				</div>
 
 				<iframe

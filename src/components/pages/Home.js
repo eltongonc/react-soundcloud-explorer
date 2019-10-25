@@ -52,10 +52,19 @@ class Home extends React.Component {
 	}
 
 	selectSong(song) {
-		console.log(song);
 		this.setState({
 			song,
-		})
+		});
+
+		const songs = document.querySelectorAll('.track');
+
+		for (let i = 0; i < songs.length; i++) {
+			const song = songs[i];
+			song.classList.remove('playing');
+		}
+
+		const songEl = document.getElementById(song.id);
+		songEl.classList.add('playing');
 	}
 
 	generateURI() {
@@ -105,9 +114,7 @@ class Home extends React.Component {
 						</section>
 					</section>
 
-					<div className="player">
-						<Player playing={this.state.song.uri ? true : false} song={this.state.song} src={this.generateURI()}/>
-					</div>
+					<Player playing={this.state.song.uri ? true : false} song={this.state.song} src={this.generateURI()}/>
 
 				</section>
 			</PageWrapper>
