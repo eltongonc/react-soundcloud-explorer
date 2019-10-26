@@ -53,6 +53,8 @@ class Home extends React.Component {
 	}
 
 	selectSong(song, songIndex) {
+		console.log(song);
+		
 		this.setState({
 			song,
 			songIndex,
@@ -101,7 +103,26 @@ class Home extends React.Component {
 	next() {
 		const nextIndex = this.state.songIndex + 1;
 
-		const song = this.state.data[nextIndex];
+		let song = this.state.data[nextIndex];
+		song = {
+			pageTitle: "Title",
+			id: song.id,
+			title: song.title,
+			genre: song.genre || "No genre",
+			description: song.description,
+			stream_url: song.stream_url,
+			created_at: song.created_at,
+			path: song.permalink,
+			soundcloudURL: song.permalink_url,
+			uri: song.uri.replace("https://", ""),
+			img: song.artwork_url,
+			likes: song.likes_count ? `<i class="fa fa-heart"></i> ${song.likes_count}` : "",
+			userImg: song.user.avatar_url || "../img/user.svg",
+			userLink: song.user.permalink_url,
+			userName: song.user.username,
+			duration: song.duration
+		};
+
 		this.selectSong(song, nextIndex);
 	}
 
@@ -110,7 +131,26 @@ class Home extends React.Component {
 			
 			const prevIndex = this.state.songIndex - 1;
 	
-			const song = this.state.data[prevIndex];
+			let song = this.state.data[prevIndex];
+			song = {
+				pageTitle: "Title",
+				id: song.id,
+				title: song.title,
+				genre: song.genre || "No genre",
+				description: song.description,
+				stream_url: song.stream_url,
+				created_at: song.created_at,
+				path: song.permalink,
+				soundcloudURL: song.permalink_url,
+				uri: song.uri.replace("https://", ""),
+				img: song.artwork_url,
+				likes: song.likes_count ? `<i class="fa fa-heart"></i> ${song.likes_count}` : "",
+				userImg: song.user.avatar_url || "../img/user.svg",
+				userLink: song.user.permalink_url,
+				userName: song.user.username,
+				duration: song.duration
+			};
+
 			this.selectSong(song, prevIndex);
 		}
 	}
