@@ -26,7 +26,6 @@ class Player extends React.Component {
 
 	render() {
 		const { props } = this;
-		console.log(SC.Widget.Events.LOAD_PROGRESS);
 
 		return (
 			<div className={ props.song.uri ? 'player' : 'player player--hidden'}>
@@ -49,13 +48,13 @@ class Player extends React.Component {
 					</div>
 
 					<div className="player__controls">
-						<button onClick={() => this.player.prev()}>
+						<button onClick={() => props.prev()}>
 							<span><i className="fa fa-backward"/></span>
 						</button>
 						<button onClick={() => this.togglePlayer()}>
 							<span><i className={this.state.playing ? "fa fa-pause": "fa fa-play"}/></span>
 						</button>
-						<button onClick={() => this.player.next()}>
+						<button onClick={() => props.next()}>
 							<span><i className="fa fa-forward"/></span>
 						</button>
 					</div>
