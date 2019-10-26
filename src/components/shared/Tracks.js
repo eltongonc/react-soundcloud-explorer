@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import NoteIcon from './NoteIcon';
 
 // Player template
@@ -29,7 +28,7 @@ function Tracks(props) {
 		return (
 			trackList.map((item, i) => (
 				// <Link}>
-					<article className="track" key={i} id={item.id} onClick={props.onSelectTrack.bind(this, item)}>
+					<article className="track" key={i} id={item.id} onClick={props.onSelectTrack.bind(this, item, i)}>
 						{
 							item.img ? 
 								<img className="track__thumb" src={item.img} alt={item.title} />

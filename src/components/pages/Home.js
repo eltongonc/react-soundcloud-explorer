@@ -15,6 +15,7 @@ class Home extends React.Component {
 			data: [],
 			query: '',
 			song: {},
+			songIndex: 0,
 		}
 	}
 
@@ -51,11 +52,21 @@ class Home extends React.Component {
 
 	}
 
-	selectSong(song) {
-		console.log(song);
+	selectSong(song, songIndex) {
 		this.setState({
 			song,
-		})
+			songIndex,
+		});
+
+		const songs = document.querySelectorAll('.track');
+
+		for (let i = 0; i < songs.length; i++) {
+			const song = songs[i];
+			song.classList.remove('playing');
+		}
+
+		const songEl = document.getElementById(song.id);
+		songEl.classList.add('playing');
 	}
 
 	generateURI() {
@@ -87,6 +98,23 @@ class Home extends React.Component {
 		return baseURL + url;
 	}
 
+	next() {
+		const nextIndex = this.state.songIndex + 1;
+
+		const song = this.state.data[nextIndex];
+		this.selectSong(song, nextIndex);
+	}
+
+	prev() {
+		if (this.state.songIndex > 0) {
+			
+			const prevIndex = this.state.songIndex - 1;
+	
+			const song = this.state.data[prevIndex];
+			this.selectSong(song, prevIndex);
+		}
+	}
+
 	componentDidMount() {
 		this.resolveData();
 	}
@@ -97,7 +125,7 @@ class Home extends React.Component {
 				<section id="explorer" className="home">
 					<Search onSubmit={(query) =>this.handleSubmit(query)}/>
 					<section id="content" className="tracks">
-						<Tracks onSelectTrack={(song) => this.selectSong(song)} trackList={this.state.data}/>
+						<Tracks onSelectTrack={this.selectSong.bind(this)} trackList={this.state.data}/>
 
 						<section className="tracks__more">
 							<h3>Search more songs</h3>
@@ -105,9 +133,13 @@ class Home extends React.Component {
 						</section>
 					</section>
 
-					<div className="player">
-						<Player playing={this.state.song.uri ? true : false} song={this.state.song} src={this.generateURI()}/>
-					</div>
+					<Player
+						playing={this.state.song.uri ? true : false}
+						song={this.state.song}
+						src={this.generateURI()}
+						next={this.next.bind(this)}
+						prev={this.prev.bind(this)}
+					/>
 
 				</section>
 			</PageWrapper>
