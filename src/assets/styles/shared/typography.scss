@@ -1,0 +1,15 @@
+body {
+	font-family: Montserrat;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	font-family: Montserrat;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	font-family: Montserrat;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	font-family: Montserrat;
+}
