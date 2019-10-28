@@ -16,6 +16,7 @@ class Home extends React.Component {
 			query: '',
 			song: {},
 			songIndex: 0,
+			playing: false,
 		}
 	}
 
@@ -53,8 +54,6 @@ class Home extends React.Component {
 	}
 
 	selectSong(song, songIndex) {
-		console.log(song);
-		
 		this.setState({
 			song,
 			songIndex,
@@ -69,35 +68,8 @@ class Home extends React.Component {
 
 		const songEl = document.getElementById(song.id);
 		songEl.classList.add('playing');
-	}
 
-	generateURI() {
-		const baseURL = 'https://w.soundcloud.com/player/?url=';
-		const query = {
-			auto_play: true,
-			color: '#333333',
-			buying: false,
-			sharing: false,
-			download: false,
-			show_playcount: false,
-			show_artwork: false,
-			show_user: false,
-			single_active: false,
-			hide_related: true,
-			show_comments: false,
-			show_reposts:false,
-		}
-
-		let url = `https%3A//${this.state.song.uri}`;
-
-		for (const key in query) {
-			if (query.hasOwnProperty(key)) {
-				const value = query[key];
-				url += `&amp;${key}=${value}`;
-			}
-		}
-		
-		return baseURL + url;
+		this.togglePlay(true);
 	}
 
 	next() {
@@ -114,7 +86,7 @@ class Home extends React.Component {
 			created_at: song.created_at,
 			path: song.permalink,
 			soundcloudURL: song.permalink_url,
-			uri: song.uri.replace("https://", ""),
+			uri: song.uri,
 			img: song.artwork_url,
 			likes: song.likes_count ? `<i class="fa fa-heart"></i> ${song.likes_count}` : "",
 			userImg: song.user.avatar_url || "../img/user.svg",
@@ -155,6 +127,12 @@ class Home extends React.Component {
 		}
 	}
 
+	togglePlay(status) {
+		this.setState({
+			playing: status || !this.state.playing
+		})
+	}
+
 	componentDidMount() {
 		this.resolveData();
 	}
@@ -164,6 +142,7 @@ class Home extends React.Component {
 			<PageWrapper>
 				<section id="explorer" className="home">
 					<Search onSubmit={(query) =>this.handleSubmit(query)}/>
+
 					<section id="content" className="tracks">
 						<Tracks onSelectTrack={this.selectSong.bind(this)} trackList={this.state.data}/>
 
@@ -174,9 +153,9 @@ class Home extends React.Component {
 					</section>
 
 					<Player
-						playing={this.state.song.uri ? true : false}
+						playing={this.state.playing}
+						onTogglePlay={this.togglePlay.bind(this)}
 						song={this.state.song}
-						src={this.generateURI()}
 						next={this.next.bind(this)}
 						prev={this.prev.bind(this)}
 					/>
