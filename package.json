@@ -33,7 +33,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://eltongonc.github.io/react-soundcloud-explorer/",
+  "homepage": "https://eltongonc.github.io/react-soundcloud-explorer/",
   "devDependencies": {
     "gh-pages": "^2.1.1"
   }
