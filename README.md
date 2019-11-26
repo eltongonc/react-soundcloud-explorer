@@ -1,7 +1,7 @@
 # Soundcloud explorer: Webapp from scratch
 <p align="center">
-    <a href="http://eltongoncalves.com/minor/">
-        <img src="https://eltongonc.github.io/web_app_from_scratch/week3/img/logo.jpg" alt="Live link"/>
+    <a href="http://soundcloud.eltongoncalves.com/">
+        <img src="/js-spa/img/logo.jpg" alt="Live link"/>
     </a>
 </p>
 
@@ -16,7 +16,7 @@ This is a basic SPA that uses Javascript to get data from an API and navigate th
 ### Object method diagram
 ![Object method diagram](https://eltongonc.github.io/web_app_from_scratch/week3/img/app_diagram.png)
 ### Flowchart
-![Flowchart](https://eltongonc.github.io/web_app_from_scratch/week3/img/flowchart.png)
+![Flowchart](/js-spa/img/flowchart.png)
 
 ## Improving the app
 Because it was a three week project there is still a lot that needs to be implemented.
@@ -40,17 +40,12 @@ You can help improve this app by sharing your expertise and tips, as well as lea
 
 
 ### Example
-Here is a link to the [web-app](http://eltongoncalves.com/minor/)
+Here is a link to the [web-app](http://soundcloud.eltongoncalves.com/)
 
 ## Built With
 - Handlebars - For HTML templating (will be removed).
 - Native JavaScript.
 - CSS3 for the styling.
-
-### Log
-- [Week1 - JavaScript objects & patterns](https://github.com/eltongonc/web_app_from_scratch/tree/master/week1)
-- [Week2 - Data, routing & templating](https://github.com/eltongonc/web_app_from_scratch/tree/master/week2)
-- [Week3 - User feedback ](https://github.com/eltongonc/web_app_from_scratch/tree/master/week3)
 
 
 ## Author
