@@ -1,6 +1,6 @@
 # Soundcloud explorer: Webapp from scratch
 <p align="center">
-    <a href="http://soundcloud.eltongoncalves.com/">
+    <a href="http://soundcloud.eltongoncalves.nl/">
         <img src="/js-spa/img/logo.jpg" alt="Live link"/>
     </a>
 </p>
@@ -40,7 +40,7 @@ You can help improve this app by sharing your expertise and tips, as well as lea
 
 
 ### Example
-Here is a link to the [web-app](http://soundcloud.eltongoncalves.com/)
+Here is a link to the [web-app](http://soundcloud.eltongoncalves.nl/)
 
 ## Built With
 - Handlebars - For HTML templating (will be removed).
