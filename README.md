@@ -14,7 +14,7 @@ This is a basic SPA that uses Javascript to get data from an API and navigate th
 
 <!-- Diagram -->
 ### Object method diagram
-![Object method diagram](https://eltongonc.github.io/web_app_from_scratch/week3/img/app_diagram.png)
+![Object method diagram](/js-spa/img/app_diagram.png)
 ### Flowchart
 ![Flowchart](/js-spa/img/flowchart.png)
 
